@@ -1,0 +1,50 @@
+.h1Auth{
+    align-self: center;
+}
+
+html, body{
+    height:100%;
+}
+
+.login{
+margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    
+   
+}
+
+#auth{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 50px;
+  
+}
+
+.registerLinkFromLogin{
+    cursor: pointer;
+
+}
+
+.loginFormSubmit{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    
+   
+}
+
+
+
+
+   
