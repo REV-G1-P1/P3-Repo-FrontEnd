@@ -1,7 +1,8 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import { Addresses } from "../../Types/Addresses";
 import { remoteUrl } from "../../Types/URL";
-import { User } from "../../Types/User";
+import { loginUser, User } from "../../Types/User";
 
 export interface AuthState{
     isLoggedIn:boolean,
@@ -12,33 +13,49 @@ export interface AuthState{
 }
 
 const person:User={
-    personId: 0,
-    name: "",
+    user_id: 0,
+    first_name: "",
+    last_name: "",
     email: "",
-    password: ""
+    password: "",
+    ssn: 0,
+    user_role: ""
 };
 const initialState:AuthState =  {
     isLoggedIn: false, registeredError: false, loginError: false, currentUser: person,
     isRegistered: false,
 };
 
-export const register = createAsyncThunk(
-    'user/register',
+export const registerUser = createAsyncThunk(
+    'user/registerUser',
     async(user:User, thunkAPI) => {
         try{
             
-            const res = await axios.post(`${remoteUrl}/persons/register`, user);
+            const res = await axios.post(`${remoteUrl}/users/registerUser`, user);
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Email Already Exist');
         }
     }
 );
+
+export const registerAddress = createAsyncThunk(
+    'user/registerAddress',
+    async(addresss:Addresses, thunkAPI) => {
+        try{
+            
+            const res = await axios.post(`${remoteUrl}/persons/registerAddress`, addresss);
+            return res.data;
+        } catch(e) {
+            return thunkAPI.rejectWithValue('Failed to sava the addresss');
+        }
+    }
+);
 export const login = createAsyncThunk(
     'user/login',
-    async(user:User, thunkAPI) => {
+    async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/persons/login`, user);
+            const res = await axios.post(`${remoteUrl}/users/login`, user);
             console.log("login slice res data "+res.data);
            return {user: res.data};
          
@@ -69,13 +86,19 @@ export const personSlice = createSlice({
             console.log("useruseruser "+JSON.stringify(localStorage.getItem('user')));
             return state;
         });
-        builder.addCase(register.fulfilled, (state,action) => {
+        builder.addCase(registerUser.fulfilled, (state,action) => {
             state.isRegistered=true;
             state.registeredError=false;
             state.currentUser=action.payload.user;
             return state
         });
-        builder.addCase(register.rejected, (state,action) => {
+        builder.addCase(registerAddress.fulfilled, (state,action) => {
+            state.isRegistered=true;
+            state.registeredError=false;
+            state.currentUser=action.payload.user;
+            return state
+        });
+        builder.addCase(registerUser.rejected, (state,action) => {
             console.log("inside login rejected")
             state.registeredError=true;
             state.isRegistered=false;
