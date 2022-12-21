@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Redux/Store';
+import { accountInformation } from '../../Types/AccountInformation';
 import './Transfer.css'
 export const TransferPage:React.FC= ()=>{
-
+    const userState = useSelector((state:RootState) => state.auth);
+    const accounts:accountInformation[] = userState.currentUser.accountInformation;
     return (
         <>
         <div className='TransferRootContainer'>
@@ -11,10 +15,10 @@ export const TransferPage:React.FC= ()=>{
 Account Selection From 
             </option>
             <option>
-Checking Account
+{accounts[0]?.accountType}
             </option>
             <option>
-Saving Account
+{accounts[1]?.accountType}
             </option>
            </select>
 
@@ -23,10 +27,10 @@ Saving Account
 Action Selection to
             </option>
             <option>
-Checking Account
+{accounts[0]?.accountType}
             </option>
             <option>
-Saving Account
+{accounts[1]?.accountType}
             </option>
            </select>
 

@@ -1,25 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import  './Register.css'
-import { Link, Navigate, useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { DispatchType, RootState } from '../../Redux/Store';
-import { registerUser } from '../../Redux/Slices/UserSlice';
+import { registerUser, userInformation } from '../../Redux/Slices/UserSlice';
 import { User } from '../../Types/User';
+import { Addresses } from '../../Types/Addresses';
+import { accountInformation, AccountType } from '../../Types/AccountInformation';
 
 
 export const RegisterPage:React.FC = () => {
     let navigate = useNavigate();
     const userState = useSelector((state:RootState) => state.auth);
     const dispatch:DispatchType = useDispatch();
+
+    const address:Addresses={
+        city: '',
+        state: '',
+        streetAddress: '',
+        streetAddressLine2: '',
+        zipCode: 0
+    }
+
     const [user, setUser] = useState<User>({
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         email:'',
         password: '',
         ssn:0,
-        
-        
+        address:address,
+        accountInformation:[]
+    
     });
+
+   
+
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setUser({
@@ -36,12 +51,9 @@ export const RegisterPage:React.FC = () => {
 
     const handleRegisterUser = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        // dispatch(registerUser(user)).then(()=>{
-        //     navigate("/address");
-        //     clearAllInputs();
-        // });
-        navigate("/address");
-        
+        dispatch(userInformation(user))
+            navigate("/address");
+            clearAllInputs();
     }
 
     const  clearAllInputs = ()=>{
@@ -65,15 +77,15 @@ export const RegisterPage:React.FC = () => {
             {userState.registeredError  ? <h1 className="h1Auth">Email Already Exist</h1> : <></>}
             {userState.isRegistered  ? <h1 className="h1Auth">Please Login Now</h1> : <></>}
             <label>First Name</label>
-            <input id= "first_name" name="first_name" placeholder="first name" onChange={handleChange}/>
+            <input id= "first_name" name="firstName" placeholder="first name" onChange={handleChange} required/>
             <label>Last Name</label>
-            <input id= "last_name" name="last_name" placeholder="last name" onChange={handleChange}/>
+            <input id= "lastName" name="lastName" placeholder="last name" onChange={handleChange} required/>
             <label>Email</label>
-            <input id= "email" name="email" placeholder="Your email" onChange={handleChange}/>
+            <input id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
             <label>Password</label>
-            <input type="password" id="password" name="password" placeholder="password" onChange={handleChange}/>
+            <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
             <label>SSN</label>
-            <input type="password" id="password" name="ssn" placeholder="ssn" onChange={handleChange}/>
+            <input type="password" id="password" name="ssn" placeholder="ssn" onChange={handleChange} required/>
             <div className='loginFormSubmit'>
             <button id="login" className="authentication" onClick={handleRegisterUser}>Next</button>
             <Link to="/login" className="registerLinkFromLogin">Login</Link></div>

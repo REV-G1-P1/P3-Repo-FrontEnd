@@ -1,13 +1,15 @@
+import { accountInformation } from "./AccountInformation"
+import { Addresses } from "./Addresses"
+
 export interface User{
-user_id?: number,
-first_name: string,
-last_name: string,
+userId?: number,
+firstName: string,
+lastName: string,
 email:string,
 password: string,
 ssn:number,
-user_role?: string
-
-    
+address:Addresses,
+accountInformation:accountInformation[]
 }
 
 

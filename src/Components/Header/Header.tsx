@@ -4,7 +4,7 @@ import './Header.css';
 import { CgProfile  } from 'react-icons/cg';
 import { useDispatch } from 'react-redux';
 import { DispatchType } from '../../Redux/Store';
-import { logout } from '../../Redux/Slices/UserSlice';
+import { logoutUser } from '../../Redux/Slices/UserSlice';
 
 
 export const HeaderPage:React.FC = () => {
@@ -14,7 +14,7 @@ export const HeaderPage:React.FC = () => {
 
       const handleLogout = (e: { preventDefault: () => void; })=>{
                 e.preventDefault();
-        dispatch(logout())
+        dispatch(logoutUser())
         navigate("/login")
       }
 
