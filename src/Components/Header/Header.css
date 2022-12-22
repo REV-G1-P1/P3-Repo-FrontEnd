@@ -1,0 +1,39 @@
+
+   img{
+      height: 100px;
+      align-self: flex-start;
+  
+  }
+  
+  .logoutBtn{
+    border-style: none;
+    
+    cursor: pointer;
+  }
+
+  .nav {
+      display: flex;
+      overflow: hidden;
+      flex-direction: row;
+      justify-content:  space-evenly;
+      align-items: center;
+     
+    }
+    
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  
+  .header{
+  
+    box-shadow: 0 4px 8px 0 rgba(255, 254, 254, 0.8);
+    border-bottom: 1px solid #a5a5a5;
+    padding: 10px 0px;
+  }
+  
+  

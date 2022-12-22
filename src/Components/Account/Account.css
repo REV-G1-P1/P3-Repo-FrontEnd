@@ -1,0 +1,39 @@
+.AccountRootContainer{
+
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    padding:30px;
+border-radius: 5%;
+
+}
+
+.balance_element{
+
+    text-align: center;
+    font-size: 2em;
+}
+
+.AccountTransferContainer{
+
+    display: flex;
+    flex-direction: row;
+    border:solid;
+    font-size: 1.2em;
+   
+    
+}
+
+.AccountHeader{
+    border:solid;
+    border-radius: 10%;
+    text-align: center;
+}
+
+
+
+.AccountTransferContainer > input button{
+    font-size: 1em;
+    width:fit-content;
+    
+}

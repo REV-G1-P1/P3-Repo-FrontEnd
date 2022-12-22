@@ -1,0 +1,45 @@
+.TransferRootContainer{
+    height: fit-content;
+    border-radius: 5%;
+    margin-top: 0;
+    padding: 0px 0px 20px;
+    border: solid;
+    justify-content: space-evenly;
+
+  
+}
+
+.TransferHeader{
+    margin: 0;
+    background-color: beige;
+    border-radius: 15%;
+    padding: 7px 0px;
+   
+}
+select{
+    height: 40px;
+}
+
+.TransferContainer{
+    padding: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    
+}
+
+.TransferButtonsContainer{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:20px;
+
+}
+.TransferContainer > *{
+    font-size: larger;
+}
+
+.TransferPriceElement{
+   width: 150px;
+}

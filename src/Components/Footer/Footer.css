@@ -1,0 +1,129 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  
+  html {
+    font-size: 100%;
+  }
+  
+  body {
+    font-family: acumin-pro, system-ui, sans-serif;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-size: 14px;
+    background-color: #ffffff;
+    align-items: start;
+    min-height: 100vh;
+  }
+  
+  .footer {
+    
+    display: flex;
+    flex-flow: row wrap;
+    padding: 30px 30px 20px 30px;
+    color: #2f2f2f;
+    border-top: 1px solid #a5a5a5;
+    margin-top:30px;
+    box-shadow: 0 4px 8px 0 rgba(255, 254, 254, 0.8);
+
+  }
+  
+  .footer > * {
+    flex:  1 100%;
+  }
+  
+  .footerAddress {
+    margin-right: 1.25em;
+    margin-bottom: 2em;
+  }
+  
+  .footerLogo {
+    width:200px;
+     height:200px; 
+  }
+  
+  .footerAddress h2 {
+    margin-top: 1.3em;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .navTitle {
+    font-weight: 400;
+    font-size: 15px;
+  }
+  
+  .footer address {
+    font-style: normal;
+    color: #999;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer li {
+    line-height: 2em;
+  }
+  
+  .footer a {
+    text-decoration: none;
+  }
+  
+  .footerNav {
+    display: flex;
+      flex-flow: row wrap;
+  }
+  
+  .footerNav > * {
+    flex: 1 50%;
+    margin-right: 1.25em;
+  }
+  
+  .navUl a {
+    color: #999;
+  }
+  
+  .navUl--extra {
+    column-count: 2;
+    column-gap: 1.25em;
+  }
+  
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #999;
+  }
+    
+  
+  .heart {
+    color: #2f2f2f;
+  }
+  
+  @media screen and (min-width: 24.375em) {
+    .legal  {
+      margin-left: auto;
+    }
+  }
+  
+  @media screen and (min-width: 40.375em) {
+    .footerNav > * {
+      flex: 1;
+    }
+    
+    .navItem--extra {
+      flex-grow: 2;
+    }
+    
+    .footerAddress {
+      flex: 1 0px;
+    }
+    
+    .footerNav {
+      flex: 2 0px;
+    }
+  }
