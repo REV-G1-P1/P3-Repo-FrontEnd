@@ -72,7 +72,7 @@ export const RegisterPage:React.FC = () => {
         <div className="login">
            
 
-            <form id="auth">
+            <form id="auth" onSubmit={handleRegisterUser}>
             <h1 className="h1Auth">Register</h1>
             {userState.registeredError  ? <h1 className="h1Auth">Email Already Exist</h1> : <></>}
             {userState.isRegistered  ? <h1 className="h1Auth">Please Login Now</h1> : <></>}
@@ -81,13 +81,13 @@ export const RegisterPage:React.FC = () => {
             <label>Last Name</label>
             <input id= "lastName" name="lastName" placeholder="last name" onChange={handleChange} required/>
             <label>Email</label>
-            <input id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
+            <input  type ="email" id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
             <label>Password</label>
             <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
             <label>SSN</label>
-            <input type="password" id="password" name="ssn" placeholder="ssn" onChange={handleChange} required/>
+            <input type="number" id="password"  maxLength={9}  name="ssn" placeholder="ssn" onChange={handleChange} required/>
             <div className='loginFormSubmit'>
-            <button id="login" className="authentication" onClick={handleRegisterUser}>Next</button>
+            <button id="login" className="authentication" >Next</button>
             <Link to="/login" className="registerLinkFromLogin">Login</Link></div>
             
            

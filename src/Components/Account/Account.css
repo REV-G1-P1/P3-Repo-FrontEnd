@@ -2,8 +2,10 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     border: solid;
     padding:30px;
+    width: 100%;
 border-radius: 5%;
 
 }

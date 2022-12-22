@@ -4,6 +4,7 @@ import { UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
 import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
+import { ErrorType } from '../../Types/Error';
 import './Transfer.css'
 export const TransferPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
@@ -15,7 +16,7 @@ export const TransferPage:React.FC= ()=>{
       const [balance, setBalance] = useState(0);
       const [changeBalanceFrom, setChangeBalanceFrom] = useState<updateBalance>();
       const [changeBalanceTo, setChangeBalanceTo] = useState<updateBalance>();
-     
+      const [error, setError] = useState<ErrorType>();
       
       const handleAccountChangeFrom = (e: { target: { value: SetStateAction<string>; }; }) => {
         setFromAccountValue(e.target.value);
@@ -33,14 +34,28 @@ export const TransferPage:React.FC= ()=>{
 
       const handleTransfer= (e: { preventDefault: () => void; })=>{        
         e.preventDefault(); 
+        if(accounts[Number(FromAccountValue)]?.accountNumber ===
+        accounts[Number(ToAccountValue)]?.accountNumber)
+        {
+          setError({
+            showError:true,
+            message:'Cannot transfer between same accounts'
+          })
+          setInterval(function(){ setError({
+            showError:false,
+            message:''
+          })},3000);
+          clearInputs();
+        }else
+        {
             dispatch(UpdateRemoteBalance(changeBalanceFrom!));
             dispatch(UpdateRemoteBalance(changeBalanceTo!));
-        //  console.log("change balance to "+JSON.stringify(changeBalanceTo));
-          dispatch(updateLocalBalance(changeBalanceFrom));
-          dispatch(updateLocalBalance(changeBalanceTo));
+            dispatch(updateLocalBalance(changeBalanceFrom));
+            dispatch(updateLocalBalance(changeBalanceTo));
           
         clearInputs();
-    }
+        }
+      }
 
     const clearInputs= ()=>{
         var select = document.getElementsByTagName('select');
@@ -56,15 +71,17 @@ setBalance(0);
         setChangeBalanceFrom({
             index: Number(FromAccountValue),
             accountNumber:accounts[Number(FromAccountValue)]?.accountNumber,
-            balance:Number(accounts[Number(FromAccountValue)]?.balance)-Number(balance)        
+            balance:Number(accounts[Number(FromAccountValue)]?.balance)-Number(balance)<0
+            ?accounts[Number(FromAccountValue)]?.balance
+            :Number(accounts[Number(FromAccountValue)]?.balance)-Number(balance)           
          });
          setChangeBalanceTo({
             index: Number(ToAccountValue),
             accountNumber:accounts[Number(ToAccountValue)]?.accountNumber,
-            balance:Number(accounts[Number(ToAccountValue)]?.balance)+Number(balance)        
+            balance:Number(accounts[Number(FromAccountValue)]?.balance)-Number(balance)<0
+            ?accounts[Number(ToAccountValue)]?.balance
+            :Number(accounts[Number(ToAccountValue)]?.balance)+Number(balance)        
          });
-         console.log("change balance to "+JSON.stringify(changeBalanceTo));
-         console.log("change balance from "+JSON.stringify(changeBalanceFrom));
         
     },[FromAccountValue, ToAccountValue, balance])
   
@@ -103,6 +120,7 @@ value={balance} onChange={handleAmountChange} ></input>
 <button onClick={handleTransfer}>Submit</button>
   
             </div>
+            <p>{error?.showError? error.message:''}</p>
          </div>
          
         </div>

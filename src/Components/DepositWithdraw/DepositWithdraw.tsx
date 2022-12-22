@@ -4,6 +4,7 @@ import {  UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
 import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
+import { ErrorType } from '../../Types/Error';
 import './DepositWithdraw.css'
 export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
@@ -13,6 +14,7 @@ export const DepositWithdrawPage:React.FC= ()=>{
       const [actionValue, setActionValue] = useState("");
       const [balance, setBalance] = useState(0);
       const [changeBalance, setChangeBalance] = useState<updateBalance>();
+      const [error, setError] = useState<ErrorType>();
       
       const handleAccountChange = (e: { target: { value: SetStateAction<string>; }; }) => {
         setAccountValue(e.target.value);
@@ -24,11 +26,23 @@ export const DepositWithdrawPage:React.FC= ()=>{
 
       const handleDepositWithdraw= (e: { preventDefault: () => void; })=>{
         e.preventDefault();
-        dispatch(UpdateRemoteBalance(changeBalance!));
-     
-        dispatch(updateLocalBalance(changeBalance));
-        clearInputs();
+        if(accounts[Number(accountValue)].balance-balance<0 && actionValue==="withdraw")
+        {
+          setError({
+            showError:true,
+            message:'Insufficient Balance'
+          })
+          setInterval(function(){ setError({
+            showError:false,
+            message:''
+          })},3000);
+          clearInputs();
+        }else{
+          dispatch(UpdateRemoteBalance(changeBalance!));
+          dispatch(updateLocalBalance(changeBalance));  
+          clearInputs();
     }
+  }
 
     const handleAmountChange= (e: { target: { value: any; }; })=>{
                  setBalance(
@@ -46,13 +60,17 @@ export const DepositWithdrawPage:React.FC= ()=>{
     
     }else if(actionValue==="withdraw")
     {
+     
         setChangeBalance({
             index: Number(accountValue),
             accountNumber:accounts[Number(accountValue)].accountNumber,
-            balance:accounts[Number(accountValue)].balance-balance        
-     }); 
-    }
-      
+            balance:accounts[Number(accountValue)].balance-balance<0
+            ?accounts[Number(accountValue)].balance
+            :accounts[Number(accountValue)].balance-balance       
+     });
+    
+  }
+    
     },[accountValue, actionValue, balance])
 
     const clearInputs= ()=>{
@@ -97,12 +115,13 @@ Withdraw
             <div className='TransferButtonsContainer'>
 <input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange}></input>
 <button onClick={handleDepositWithdraw}>Submit</button>
-  
+
             </div>
-         
+            <p>{error?.showError? error.message:''}</p>
          </div>
         
         </div>
+        
         </>
     )
 }
