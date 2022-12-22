@@ -23,7 +23,7 @@ label, input , button{
         flex-direction: column;
         align-content: space-between;
         align-items: flex-start;
-        border:none;
+        border-style: solid;
         gap: 30px;
         padding: 50px;
         

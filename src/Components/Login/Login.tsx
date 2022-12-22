@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
-import { User } from '../../Types/User';
+import { loginUser, User } from '../../Types/User';
 import './Login.css'
 export const LoginPage:React.FC= ()=>{
     let navigate = useNavigate();
@@ -27,20 +27,23 @@ export const LoginPage:React.FC= ()=>{
 
     const handleLogin = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-       const user:User ={
-           email: email ,
+       const user:loginUser ={
+           email: email,
            password: password
-           }   
+         
+       }   
         dispatch(login(user)).then(()=>{
             clearAllInputs();
         });
+      
+        navigate("/home");
   };
     
   const  clearAllInputs = ()=>{
-    var elements = document.getElementsByTagName("input");
-for (var ii=0; ii < elements.length; ii++) {
-  if (elements[ii].type === "text") {
-    elements[ii].value = "";
+    let elements = document.getElementsByTagName("input");
+    for (let i=0; i < elements.length; i++) {
+    if (elements[i].type === "text") {
+    elements[i].value = "";
   }
 }
 }
@@ -48,15 +51,15 @@ for (var ii=0; ii < elements.length; ii++) {
     return(
         <div className="login">
         
-            <form id="auth">
+        <form name="loginForm" id="auth">
             <h1 className="h1Auth">Login</h1>
             {userState.loginError ? <h3>Username or password incorrect</h3> : <></>}
             <label>Email</label>
-            <input id= "email" name="email" placeholder="Your email" onChange={handleChange}/>
+            <input type="text" id= "email" name="email" placeholder="email address..." onChange={handleChange} required />
             <label>Password</label>
-            <input type="password" id="password" name="password" placeholder="Your password" onChange={handleChange}/>
+            <input type="password" id="password" name="password" placeholder="password..." onChange={handleChange} required />
             <div className='loginFormSubmit'>
-            <button id="login" className="authentication" onClick={handleLogin}>Login</button>
+            <button id="login"  className="authentication" onClick={handleLogin}>Login</button>
             <Link to="/register" className="registerLinkFromLogin">register</Link></div>
             </form>
           
