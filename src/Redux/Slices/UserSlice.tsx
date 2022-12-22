@@ -90,7 +90,7 @@ export const personSlice = createSlice({
         },
         updateLocalBalance: (state, actions) => {
             console.log("action payload user slice update local balance "+JSON.stringify( actions.payload))
-            state.currentUser.accountInformation[actions.payload.index].balance=Number(actions.payload.balance);
+            state.currentUser.accountInformation.filter(x => x.accountNumber=== actions.payload.accountNumber)[0].balance=Number(actions.payload.balance);
             return state;
         },
         addressInformation: (state, actions) => {

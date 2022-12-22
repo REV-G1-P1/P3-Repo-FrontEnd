@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
 import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
@@ -22,25 +22,12 @@ export const DepositWithdrawPage:React.FC= ()=>{
         setActionValue(e.target.value);
       };
 
-      const handleDepositWithdraw= ()=>{
-        if(actionValue==="deposit"){
-            setChangeBalance({
-               index: Number(accountValue),
-               accountNumber:accounts[Number(accountValue)].accountNumber,
-               balance:Number(accounts[Number(accountValue)].balance)+Number(balance)        
-        });
-        
-        }else if(actionValue==="withdraw")
-        {
-            setChangeBalance({
-                index: Number(accountValue),
-                accountNumber:accounts[Number(accountValue)].accountNumber,
-                balance:accounts[Number(accountValue)].balance-balance        
-         }); 
-        }
+      const handleDepositWithdraw= (e: { preventDefault: () => void; })=>{
+        e.preventDefault();
         dispatch(UpdateRemoteBalance(changeBalance!));
      
         dispatch(updateLocalBalance(changeBalance));
+        clearInputs();
     }
 
     const handleAmountChange= (e: { target: { value: any; }; })=>{
@@ -49,6 +36,33 @@ export const DepositWithdrawPage:React.FC= ()=>{
                  )
     }
 
+    useEffect(()=>{
+      if(actionValue==="deposit"){
+        setChangeBalance({
+           index: Number(accountValue),
+           accountNumber:accounts[Number(accountValue)].accountNumber,
+           balance:Number(accounts[Number(accountValue)].balance)+Number(balance)        
+    });
+    
+    }else if(actionValue==="withdraw")
+    {
+        setChangeBalance({
+            index: Number(accountValue),
+            accountNumber:accounts[Number(accountValue)].accountNumber,
+            balance:accounts[Number(accountValue)].balance-balance        
+     }); 
+    }
+      
+    },[accountValue, actionValue, balance])
+
+    const clearInputs= ()=>{
+      var select = document.getElementsByTagName('select');
+for (var i = 0; i < select.length; i++)
+{
+  select[i].selectedIndex = 0;
+}
+setBalance(0);
+  }
     return (
         <>
         <div className='TransferRootContainer'>
@@ -81,7 +95,7 @@ Withdraw
            </select>
           
             <div className='TransferButtonsContainer'>
-<input className='TransferPriceElement' type='number' onChange={handleAmountChange}></input>
+<input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange}></input>
 <button onClick={handleDepositWithdraw}>Submit</button>
   
             </div>
