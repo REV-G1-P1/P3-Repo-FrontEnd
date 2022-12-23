@@ -4,9 +4,6 @@
     margin-top: 0;
     padding: 0px 0px 20px;
     border: solid;
-    justify-content: space-evenly;
-
-  
 }
 
 .TransferHeader{
@@ -33,11 +30,12 @@ select{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap:20px;
+    gap:10px;
+    font-size: 1em;
 
 }
 .TransferContainer > *{
-    font-size: larger;
+    font-size: 1em;
 }
 
 .TransferPriceElement{

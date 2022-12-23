@@ -15,8 +15,7 @@ isUpdated:true
 export const UpdateRemoteBalance = createAsyncThunk(
     'account/update',
     async(account:updateBalance, thunkAPI) => {
-        try{
-          
+        try{         
             const res = await axios.put(`${remoteUrl}/accounts/update/balance`, account);
             return res.data;
         } catch(e) {
@@ -31,7 +30,7 @@ export const accountSlice = createSlice({
     initialState,
     reducers: {
       
-       
+
     },
     extraReducers: (builder) => {
         builder.addCase(UpdateRemoteBalance.fulfilled, (state, action) => {
@@ -45,5 +44,5 @@ export const accountSlice = createSlice({
      
     }
 });
-//export const { updateLocalBalance }= accountSlice.actions;
+
 export default accountSlice.reducer;

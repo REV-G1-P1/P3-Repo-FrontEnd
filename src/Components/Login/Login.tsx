@@ -22,7 +22,8 @@ export const LoginPage:React.FC= ()=>{
     }
 
     useEffect(()=>{
-        if(userState.isLoggedIn)  navigate("/list");
+        console.log(userState.isLoggedIn)
+        if(userState.isLoggedIn)  {navigate("/home")};
     }, [userState.isLoggedIn])
 
     const handleLogin = (e: { preventDefault: () => void; }) => {
@@ -36,7 +37,7 @@ export const LoginPage:React.FC= ()=>{
             clearAllInputs();
         });
       
-        navigate("/home");
+       // navigate("/home");
   };
     
   const  clearAllInputs = ()=>{

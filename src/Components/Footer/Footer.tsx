@@ -1,8 +1,21 @@
 import './Footer.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../Assets/Knights-of-America.png';
+import { logoutUser } from '../../Redux/Slices/UserSlice';
+import { DispatchType } from '../../Redux/Store';
+import { useDispatch } from 'react-redux';
 
 export const Footer:React.FC = () => {
+  const dispatch:DispatchType= useDispatch();
+  const navigate = useNavigate();
+  const  handleLogout = (e: { preventDefault: () => void; })=>{
+    e.preventDefault();
+dispatch(logoutUser()).then(()=>{
+  navigate("/login");
+});
+
+}
+
         return (
           
             <footer className="footer">
@@ -20,23 +33,24 @@ export const Footer:React.FC = () => {
                     
               </address>
             </div>    
-            
-            <ul className="footerNav">
+        
+            <ul className="footerNav ">
               <li className="navItem">
                 <h2 className="navTitle">Pages</h2>
           
                 <ul className="navUl">
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/home">Home</Link>
                   </li>
-          
+    
                   <li>
-                      <Link to="/">Account</Link>
+                    <Link to="/mortgage">Mortgage</Link>
                   </li>
-                      
+
                   <li>
-                    <Link to="/">Mortgage</Link>
+                      <Link to="/login" onClick={handleLogout}>Logout</Link>
                   </li>
+
                 </ul>
               </li>
               
@@ -44,7 +58,7 @@ export const Footer:React.FC = () => {
              
 
               
-              <li className="navItem">
+              <li className="navItem links">
                 <h2 className="navTitle">Legal</h2>
                 
                 <ul className="navUl">
@@ -73,3 +87,4 @@ export const Footer:React.FC = () => {
         );
     }    
 export default Footer
+

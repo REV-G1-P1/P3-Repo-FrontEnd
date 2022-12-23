@@ -11,10 +11,10 @@ routingNumber, balance, accountType}) => {
         <>
        
         <div className="AccountRootContainer">
-        <h1 className='AccountHeader'>Account Type: {accountType} </h1>
-        <h1 className='AccountHeader'>Account Number:   {accountNumber} </h1>
-        <h1 className='AccountHeader'>Routing Number: {routingNumber} </h1>
-        <h1 className='AccountHeader'>Balance: {formatMoney(balance)} </h1>
+        <h3 className=' AccountType'>{accountType==="CHECKING"?'Checking':'Saving'} Account </h3>
+        <h3 className='AccountHeader'>Account Number:   {accountNumber} </h3>
+        <h3 className='AccountHeader'>Routing Number: {routingNumber} </h3>
+        <h3 className='AccountHeader'>Balance: {formatMoney(balance)} </h3>
        
       
 

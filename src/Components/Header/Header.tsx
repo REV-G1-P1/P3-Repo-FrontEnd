@@ -14,8 +14,10 @@ export const HeaderPage:React.FC = () => {
 
       const handleLogout = (e: { preventDefault: () => void; })=>{
                 e.preventDefault();
-        dispatch(logoutUser())
-        navigate("/login")
+        dispatch(logoutUser()).then(()=>{
+          navigate("/login");
+        })
+        
       }
 
 
@@ -23,10 +25,9 @@ export const HeaderPage:React.FC = () => {
     
     <header id="header" className="header">
     <div className="nav">
-    <img className='logo' src={logo}/>
-    <Link to="/shop"></Link>
-    <span className='badge badge-warning' id='lblCartCount'> </span>
-    <Link to="/notification"></Link>
+    <Link to="/home"><img className='logo' width="170" height="100" src={logo}/></Link>
+    <Link className="HeaderMorgageLink" to="/mortgage">Apply to Mortgage</Link>
+    <Link className="HeaderMorgageLink" to="/modal">Testing Modal</Link>
     <CgProfile size={50} name="logout" className='logoutBtn' onClick={handleLogout}/>
     </div>
    </header>
