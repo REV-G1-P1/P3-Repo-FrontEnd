@@ -12,7 +12,7 @@ export const AddressPage:React.FC = () => {
 let navigate = useNavigate();
     const userState = useSelector((state:RootState) => state.auth);
     const dispatch:DispatchType = useDispatch();
-   
+   console.log(JSON.stringify(userState.currentUser));
     const [address, setAddress] = useState<Addresses>({
         city: userState.currentUser.address.city,
         state: userState.currentUser.address.state,

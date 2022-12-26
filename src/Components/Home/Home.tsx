@@ -12,8 +12,8 @@ export const HomePage:React.FC= ()=>{
     
     const userState = useSelector((state:RootState) => state.auth);
     const user:User = JSON.parse(localStorage.getItem("user")||'{}');
-    console.log("user home localstorage "+JSON.stringify(user));
-    console.log("user home auth state "+JSON.stringify(userState));
+    //console.log("user home localstorage "+JSON.stringify(user));
+   // console.log("user home auth state "+JSON.stringify(userState));
         const handleTransferButton= (e: { preventDefault: () => void; })=>{
             e.preventDefault();
             document.getElementById("transferPage")!.style.display="block";
@@ -26,12 +26,13 @@ export const HomePage:React.FC= ()=>{
         }
 
         useEffect( ()=>{
-             console.log("home page use effect "+JSON.stringify(userState.currentUser))
+            console.log(JSON.stringify(userState.currentUser.accountInformation));
+        //     console.log("home page use effect "+JSON.stringify(userState.currentUser))
         },[userState.currentUser])
     
     return (
         <>
-        
+       
 
         <div className="HomeRootContainer">
         <h1 className="HomePageHeader">Home page</h1>
@@ -44,7 +45,7 @@ export const HomePage:React.FC= ()=>{
                 
             userState.currentUser.accountInformation.map((account:accountInformation) => {
                
-                return <AccountPage key={account.balance} 
+                return <AccountPage key={account.accountNumber} 
                 accountName={''} accountNumber={account.accountNumber} 
                 routingNumber={account.routingNumber} balance= {account.balance}
                 accountType = {account.accountType}          />
