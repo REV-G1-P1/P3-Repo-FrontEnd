@@ -5,10 +5,13 @@ import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
+import { User } from '../../Types/User';
 import './Transfer.css'
 export const TransferPage:React.FC= ()=>{
+
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser.accountInformation;
+    const user:User = JSON.parse(localStorage.getItem("user")||'{}');
+    const accounts:accountInformation[] = user.accountInformation?user.accountInformation:userState.currentUser.accountInformation;
     const dispatch:DispatchType = useDispatch();
 
       const [FromAccountValue, setFromAccountValue] = useState("");
@@ -67,7 +70,7 @@ setBalance(0);
     }
   
     useEffect(()=>{
-
+      if(!userState.currentUser){userState.currentUser=user};
         setChangeBalanceFrom({
             index: Number(FromAccountValue),
             accountNumber:accounts[Number(FromAccountValue)]?.accountNumber,
@@ -83,11 +86,11 @@ setBalance(0);
             :Number(accounts[Number(ToAccountValue)]?.balance)+Number(balance)        
          });
         
-    },[FromAccountValue, ToAccountValue, balance])
+    },[FromAccountValue, ToAccountValue, balance, userState.currentUser.accountInformation.length])
   
     return (
         <>
-        <div className='TransferRootContainer'>
+        <form className='TransferRootContainer' onSubmit={handleTransfer}>
          <h1 className= "TransferHeader">Transfer</h1>
          <div className='TransferContainer'>
          <select id="fromAccount" onChange={handleAccountChangeFrom}>
@@ -116,14 +119,14 @@ Action Selection to
 
             <div className='TransferButtonsContainer'>
 <input className='TransferPriceElement' type='number' 
-value={balance} onChange={handleAmountChange} ></input>
-<button onClick={handleTransfer}>Submit</button>
+value={balance} onChange={handleAmountChange} required></input>
+<button >Submit</button>
   
             </div>
             <p>{error?.showError? error.message:''}</p>
          </div>
          
-        </div>
+        </form>
         </>
     )
 }

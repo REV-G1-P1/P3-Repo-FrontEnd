@@ -1,7 +1,7 @@
 .HomeRootContainer{
 display: flex;
-flex-direction: column;    
-margin: 0px 20px;
+flex-direction: column;   
+margin-left: 20px;
 width: 100%;
 
 }
@@ -14,18 +14,12 @@ margin-top: 50px;
 width: 60%;
 }
 
-.NewAccountContainer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    
-}
 
 .HomePageHeader{
     width: 100%;
     text-align:left;
-    margin: 10px 0px 50px;
+    margin: 10px 0px 20px 50px;
+    letter-spacing: 0.2em;
 }
 
 
@@ -45,13 +39,21 @@ width: 60%;
 }
 
 .LeftHomeContainer{
-    width :50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+width:60%;
 }
 .CenterHomeContainer{
-    width: 5%;
+
 }
 .RightHomeContainer{
-    width: 40%;
+width:30%;
+display: flex;
+flex-direction: column;
+align-items: center;
+
 }
 
 .MobileAccountButtons{

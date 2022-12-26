@@ -1,6 +1,7 @@
 
    img{
-      height: 100px;
+      
+      object-fit: cover;
       align-self: flex-start;
   
   }
@@ -15,8 +16,9 @@
       display: flex;
       overflow: hidden;
       flex-direction: row;
-      justify-content:  space-evenly;
+      justify-content:  space-between;
       align-items: center;
+      margin: 0px 5px;
      
     }
     
@@ -30,10 +32,17 @@
   
   
   .header{
-  
+
     box-shadow: 0 4px 8px 0 rgba(255, 254, 254, 0.8);
     border-bottom: 1px solid #a5a5a5;
-    padding: 10px 0px;
+   
   }
+
   
+  @media (max-width: 600px) {
+    .HeaderMorgageLink{
+      display: none;
+    }
+  
+  }
   

@@ -5,10 +5,13 @@ import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
+import { User } from '../../Types/User';
 import './DepositWithdraw.css'
 export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser.accountInformation;
+    const user:User = JSON.parse(localStorage.getItem("user")||'{}');
+
+    const accounts:accountInformation[] = user.accountInformation?user.accountInformation:userState.currentUser.accountInformation;
     const dispatch:DispatchType = useDispatch();
       const [accountValue, setAccountValue] = useState("");
       const [actionValue, setActionValue] = useState("");
@@ -51,6 +54,7 @@ export const DepositWithdrawPage:React.FC= ()=>{
     }
 
     useEffect(()=>{
+   
       if(actionValue==="deposit"){
         setChangeBalance({
            index: Number(accountValue),
@@ -71,7 +75,7 @@ export const DepositWithdrawPage:React.FC= ()=>{
     
   }
     
-    },[accountValue, actionValue, balance])
+    },[accountValue, actionValue, balance,userState.currentUser.accountInformation.length])
 
     const clearInputs= ()=>{
       var select = document.getElementsByTagName('select');
@@ -83,7 +87,7 @@ setBalance(0);
   }
     return (
         <>
-        <div className='TransferRootContainer'>
+        <form className='TransferRootContainer' onSubmit={handleDepositWithdraw}>
          <h1 className= "TransferHeader">Deposit/ Withdraw</h1>
          <div className='TransferContainer'>
       
@@ -113,14 +117,14 @@ Withdraw
            </select>
           
             <div className='TransferButtonsContainer'>
-<input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange}></input>
-<button onClick={handleDepositWithdraw}>Submit</button>
+<input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange} required></input>
+<button >Submit</button>
 
             </div>
             <p>{error?.showError? error.message:''}</p>
          </div>
         
-        </div>
+        </form>
         
         </>
     )

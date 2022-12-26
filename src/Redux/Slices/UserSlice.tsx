@@ -90,7 +90,13 @@ export const personSlice = createSlice({
         },
         updateLocalBalance: (state, actions) => {
           //  console.log("action payload user slice update local balance "+JSON.stringify( actions.payload))
-            state.currentUser.accountInformation.filter(x => x.accountNumber=== actions.payload.accountNumber)[0].balance=Number(actions.payload.balance);
+            
+            const user:User= JSON.parse(localStorage.getItem('user')|| '{}')
+            console.log("before "+JSON.stringify(user));
+            user.accountInformation.filter(x => x.accountNumber=== actions.payload.accountNumber)[0].balance=Number(actions.payload.balance);
+            console.log("after "+JSON.stringify(user));
+            localStorage.setItem("user",JSON.stringify(user)) ;
+            state.currentUser= JSON.parse(localStorage.getItem('user')|| '');
             return state;
         },
         addressInformation: (state, actions) => {
