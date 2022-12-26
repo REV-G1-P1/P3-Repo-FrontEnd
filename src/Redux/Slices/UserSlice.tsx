@@ -40,7 +40,7 @@ export const registerUser = createAsyncThunk(
     'user/registerUser',
     async(user:User, thunkAPI) => {
         try{
-            console.log("register user thunk "+JSON.stringify(user));
+           // console.log("register user thunk "+JSON.stringify(user));
             const res = await axios.post(`${remoteUrl}/users/register`, user);
             return res.data;
         } catch(e) {
@@ -53,7 +53,7 @@ export const login = createAsyncThunk(
     async(user:loginUser, thunkAPI) => {
         try{    
             const res = await axios.post(`${remoteUrl}/login`, user);
-            console.log("login slice res data "+res.data);
+          //  console.log("login slice res data "+res.data);
             document.cookie= `SESSION=${res.data.message}`;
            return res.data;
          
@@ -85,18 +85,24 @@ export const personSlice = createSlice({
         userInformation: (state, actions) => {
             
             state.currentUser=actions.payload;
-            console.log("reducer user information "+state.currentUser.email);
+          //  console.log("reducer user information "+state.currentUser.email);
             return state;
         },
         updateLocalBalance: (state, actions) => {
-            console.log("action payload user slice update local balance "+JSON.stringify( actions.payload))
-            state.currentUser.accountInformation[actions.payload.index].balance=Number(actions.payload.balance);
+          //  console.log("action payload user slice update local balance "+JSON.stringify( actions.payload))
+            
+            const user:User= JSON.parse(localStorage.getItem('user')|| '{}')
+            console.log("before "+JSON.stringify(user));
+            user.accountInformation.filter(x => x.accountNumber=== actions.payload.accountNumber)[0].balance=Number(actions.payload.balance);
+            console.log("after "+JSON.stringify(user));
+            localStorage.setItem("user",JSON.stringify(user)) ;
+            state.currentUser= JSON.parse(localStorage.getItem('user')|| '');
             return state;
         },
         addressInformation: (state, actions) => {
-            console.log("reducer address actions information "+JSON.stringify(actions.payload));
+         //   console.log("reducer address actions information "+JSON.stringify(actions.payload));
             state.currentUser.address=actions.payload;
-            console.log("reducer address information "+JSON.stringify(state.currentUser));
+         //   console.log("reducer address information "+JSON.stringify(state.currentUser));
             return state;
         }
     },
@@ -109,7 +115,7 @@ export const personSlice = createSlice({
             localStorage.setItem('user', JSON.stringify(action.payload.user));
             //console.log("accountaccount "+JSON.stringify(action.payload.user.accountInformation));
            
-            console.log("useruseruser "+JSON.stringify(action.payload.user));
+           // console.log("useruseruser "+JSON.stringify(action.payload.user));
             return state;
         });
         builder.addCase(logoutUser.fulfilled, (state,action) => {
