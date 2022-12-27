@@ -23,7 +23,7 @@ export const LoginPage:React.FC= ()=>{
 
     useEffect(()=>{
         console.log(userState.isLoggedIn)
-        if(userState.isLoggedIn)  {navigate("/home")};
+        if(userState.isLoggedIn)  {navigate("/authentication")};
     }, [userState.isLoggedIn])
 
     const handleLogin = (e: { preventDefault: () => void; }) => {
@@ -38,7 +38,7 @@ export const LoginPage:React.FC= ()=>{
         });
       
        // navigate("/home");
-  };
+    };
     
   const  clearAllInputs = ()=>{
     let elements = document.getElementsByTagName("input");

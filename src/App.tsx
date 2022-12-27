@@ -8,6 +8,7 @@ import { LoginPage } from './Components/Login/Login';
 import { ModalPage } from './Components/Modal/Modal';
 import { MortgagePage } from './Components/Mortgage/Mortgage';
 import { RegisterPage } from './Components/Register/Register';
+import TwoFactorAuth from "./Components/TwoFactorAuth/TwoFactorAuth";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
     <Routes>
     <Route path="" element={<LoginPage />}/>
         <Route path="/login" element={<LoginPage />}/>
+        <Route path="/authentication" element={<TwoFactorAuth />}/>
         <Route path="/register" element={<RegisterPage />}/>
         <Route path="/address" element={<AddressPage />}/>
         <Route path="/home" element={<HomePage />}/>
