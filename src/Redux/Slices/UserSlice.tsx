@@ -46,11 +46,23 @@ export const registerUser = createAsyncThunk(
     }
 );
 export const login = createAsyncThunk(
-    'user/login',
+    'user/login/login-credentials',
     async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login`, user);
-            document.cookie= `SESSION=${res.data.message}`;
+            const res = await axios.post(`${remoteUrl}/login/login-credentials`, user);
+           return res.data;
+         
+        } catch(e) {
+            return thunkAPI.rejectWithValue('Incorrect username or password');
+        }
+    }
+);
+
+export const loginWithToken = createAsyncThunk(
+    'user/login/login-token',
+    async(token: number, thunkAPI) => {
+        try{    
+            const res = await axios.post(`${remoteUrl}/login/login-token`, {token});
            return res.data;
          
         } catch(e) {
