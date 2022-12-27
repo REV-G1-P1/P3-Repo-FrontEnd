@@ -56,8 +56,8 @@ export const DepositWithdrawPage:React.FC= ()=>{
       if(actionValue==="deposit"){
         setChangeBalance({
            index: Number(accountValue),
-           accountNumber:accounts[Number(accountValue)].accountNumber,
-           balance:Number(accounts[Number(accountValue)].balance)+Number(balance)        
+           accountNumber:accounts[Number(accountValue)]?.accountNumber,
+           balance:Number(accounts[Number(accountValue)]?.balance)+Number(balance)        
     });
     
     }else if(actionValue==="withdraw")
@@ -65,10 +65,10 @@ export const DepositWithdrawPage:React.FC= ()=>{
      
         setChangeBalance({
             index: Number(accountValue),
-            accountNumber:accounts[Number(accountValue)].accountNumber,
-            balance:accounts[Number(accountValue)].balance-balance<0
-            ?accounts[Number(accountValue)].balance
-            :accounts[Number(accountValue)].balance-balance       
+            accountNumber:accounts[Number(accountValue)]?.accountNumber,
+            balance:accounts[Number(accountValue)]?.balance-balance<0
+            ?accounts[Number(accountValue)]?.balance
+            :accounts[Number(accountValue)]?.balance-balance       
      });
     
   }
