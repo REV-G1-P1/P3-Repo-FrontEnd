@@ -5,13 +5,11 @@ import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
-import { User } from '../../Types/User';
 import './DepositWithdraw.css'
+
 export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
-    const user:User = JSON.parse(localStorage.getItem("user")||'{}');
-
-    const accounts:accountInformation[] = user.accountInformation?user.accountInformation:userState.currentUser.accountInformation;
+    const accounts:accountInformation[] = userState.currentUser.accountInformation;
     const dispatch:DispatchType = useDispatch();
       const [accountValue, setAccountValue] = useState("");
       const [actionValue, setActionValue] = useState("");
