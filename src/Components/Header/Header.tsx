@@ -20,7 +20,6 @@ export const HeaderPage:React.FC = () => {
         
       }
 
-
   return(
     
     <header id="header" className="header">

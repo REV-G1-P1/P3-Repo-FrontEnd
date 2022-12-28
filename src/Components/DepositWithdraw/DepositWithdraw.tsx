@@ -9,7 +9,8 @@ import './DepositWithdraw.css'
 
 export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser.accountInformation;
+    const accounts:accountInformation[] = userState.currentUser?
+    userState.currentUser.accountInformation:[];
     const dispatch:DispatchType = useDispatch();
       const [accountValue, setAccountValue] = useState("");
       const [actionValue, setActionValue] = useState("");
@@ -73,7 +74,7 @@ export const DepositWithdrawPage:React.FC= ()=>{
     
   }
     
-    },[accountValue, actionValue, balance,userState.currentUser.accountInformation.length])
+    },[accountValue, actionValue, balance])
 
     const clearInputs= ()=>{
       var select = document.getElementsByTagName('select');

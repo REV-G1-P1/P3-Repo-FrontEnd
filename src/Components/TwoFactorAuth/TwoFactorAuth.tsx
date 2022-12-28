@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { loginWithToken } from "../../Redux/Slices/UserSlice";
-import { DispatchType } from "../../Redux/Store";
-import { loginUser } from "../../Types/User";
+import { DispatchType, RootState } from "../../Redux/Store";
 
 const TwoFactorAuth = () => {
 
     const dispatch:DispatchType = useDispatch();
-
+    let navigate = useNavigate();
+    const userState = useSelector((state:RootState) => state.auth);
     const [token, setToken] = useState<number>(0);
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +27,11 @@ const TwoFactorAuth = () => {
        // navigate("/home");
     };
 
+    useEffect(()=>{
+        console.log(userState.isLoggedIn)
+        if(userState.isAuthenticated)  {navigate("/home")};
+    }, [userState.isAuthenticated])
+    
   return (
     <div className="login">
         <form name="loginForm" id="auth" onSubmit={handleLogin}>
