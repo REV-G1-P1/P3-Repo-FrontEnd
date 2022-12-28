@@ -46,10 +46,10 @@ export const registerUser = createAsyncThunk(
     }
 );
 export const login = createAsyncThunk(
-    'user/login/login-credentials',
+    'login-credentials',
     async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login/login-credentials`, user);
+            const res = await axios.post(`${remoteUrl}/login-credentials`, user);
            return res.data;
          
         } catch(e) {
@@ -59,10 +59,10 @@ export const login = createAsyncThunk(
 );
 
 export const loginWithToken = createAsyncThunk(
-    'user/login/login-token',
+    'login-token',
     async(token: number, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login/login-token`, {token});
+            const res = await axios.post(`${remoteUrl}/login-token`, {token});
            return res.data;
          
         } catch(e) {
@@ -72,10 +72,10 @@ export const loginWithToken = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk(
-    'user/logout',
+    'logout',
     async(thunkAPI) => {
         try{    
-            const res = await axios.get(`${remoteUrl}/log-out/${document.cookie.slice(8)}`);
+            const res = await axios.get(`${remoteUrl}/log-out`);
         
            console.log(res.data);
          
