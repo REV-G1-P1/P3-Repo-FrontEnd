@@ -26,6 +26,7 @@ let navigate = useNavigate();
         lastName: userState.currentUser.lastName,
         email:userState.currentUser.email,
         password: userState.currentUser.password,
+        phoneNumber: userState.currentUser.phoneNumber,
         ssn:userState.currentUser.ssn,
         address:address,
         accountInformation:[]
