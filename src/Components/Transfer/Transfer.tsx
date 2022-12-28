@@ -9,7 +9,8 @@ import './Transfer.css'
 export const TransferPage:React.FC= ()=>{
 
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser.accountInformation;
+    const accounts:accountInformation[] = userState.currentUser?
+    userState.currentUser.accountInformation: [];
     const dispatch:DispatchType = useDispatch();
 
       const [FromAccountValue, setFromAccountValue] = useState("");
@@ -83,7 +84,7 @@ setBalance(0);
             :Number(accounts[Number(ToAccountValue)]?.balance)+Number(balance)        
          });
         
-    },[FromAccountValue, ToAccountValue, balance, userState.currentUser.accountInformation.length])
+    },[FromAccountValue, ToAccountValue, balance])
   
     return (
         <>

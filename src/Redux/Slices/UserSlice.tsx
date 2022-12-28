@@ -9,6 +9,7 @@ export interface AuthState{
     isRegistered:boolean,
     registeredError: boolean,
     loginError: boolean,
+    isAuthenticated: boolean,
     currentUser: User,
 }
 const address:Addresses={
@@ -33,6 +34,7 @@ const person:User={
 const initialState:AuthState =  {
     isLoggedIn: false, registeredError: false, loginError: false, currentUser: person,
     isRegistered: false,
+    isAuthenticated: false
 };
 
 export const registerUser = createAsyncThunk(
@@ -64,6 +66,7 @@ export const loginWithToken = createAsyncThunk(
     async(token: number, thunkAPI) => {
         try{    
             const res = await axios.post(`${remoteUrl}/login-token`, {token});
+            console.log("userslice login token "+JSON.stringify(res.data));
            return res.data;
          
         } catch(e) {
@@ -119,18 +122,27 @@ export const personSlice = createSlice({
             state.currentUser= action.payload.user;
             return state;
         });
+        
+        builder.addCase(loginWithToken.fulfilled, (state, action) => {
+           
+            state.isAuthenticated = true;
+            state.loginError=false;
+            state.currentUser= action.payload;
+            return state;
+        });
         builder.addCase(logoutUser.fulfilled, (state,action) => {
             localStorage.removeItem("user");
             document.cookie= "SESSION=; Max-Age=-99999999;";
             state.isLoggedIn=false;
-            state.isRegistered=true;
+          state.isAuthenticated=false;
+
             state.currentUser=person;
             return state;
         });
         builder.addCase(registerUser.fulfilled, (state,action) => {
             state.isRegistered=true;
             state.registeredError=false;
-            state.currentUser=action.payload.user;
+            state.currentUser=action.payload;
             return state
         });
        

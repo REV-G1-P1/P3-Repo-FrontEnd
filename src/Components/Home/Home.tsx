@@ -38,14 +38,15 @@ export const HomePage:React.FC= ()=>{
        
 
         <div className="HomeRootContainer">
-        <h1 className="HomePageHeader">Hello {
+        <h1 className="HomePageHeader">Hello {userState.currentUser?
         userState.currentUser.firstName?.charAt(0).toUpperCase() + userState.currentUser.firstName?.slice(1)
-        }
+      :" "   
+    }
      </h1>
              <div className="HomeAccountContainers">
             <div className="LeftHomeContainer">
             {
-         
+         userState.currentUser?
            userState.currentUser.accountInformation?.map((account:accountInformation) => {
                
                 return <AccountPage key={account.accountNumber} 
@@ -54,7 +55,7 @@ export const HomePage:React.FC= ()=>{
                 accountType = {account.accountType}          />
                 
             })
-           
+           :<></>
        }
                 </div>
                 <div className="CenterHomeContainer"></div>

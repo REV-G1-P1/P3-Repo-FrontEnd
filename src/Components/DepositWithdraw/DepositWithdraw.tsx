@@ -9,7 +9,8 @@ import './DepositWithdraw.css'
 
 export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser.accountInformation;
+    const accounts:accountInformation[] = userState.currentUser?
+    userState.currentUser.accountInformation:[];
     const dispatch:DispatchType = useDispatch();
       const [accountValue, setAccountValue] = useState("");
       const [actionValue, setActionValue] = useState("");
@@ -56,8 +57,8 @@ export const DepositWithdrawPage:React.FC= ()=>{
       if(actionValue==="deposit"){
         setChangeBalance({
            index: Number(accountValue),
-           accountNumber:accounts[Number(accountValue)].accountNumber,
-           balance:Number(accounts[Number(accountValue)].balance)+Number(balance)        
+           accountNumber:accounts[Number(accountValue)]?.accountNumber,
+           balance:Number(accounts[Number(accountValue)]?.balance)+Number(balance)        
     });
     
     }else if(actionValue==="withdraw")
@@ -65,15 +66,15 @@ export const DepositWithdrawPage:React.FC= ()=>{
      
         setChangeBalance({
             index: Number(accountValue),
-            accountNumber:accounts[Number(accountValue)].accountNumber,
-            balance:accounts[Number(accountValue)].balance-balance<0
-            ?accounts[Number(accountValue)].balance
-            :accounts[Number(accountValue)].balance-balance       
+            accountNumber:accounts[Number(accountValue)]?.accountNumber,
+            balance:accounts[Number(accountValue)]?.balance-balance<0
+            ?accounts[Number(accountValue)]?.balance
+            :accounts[Number(accountValue)]?.balance-balance       
      });
     
   }
     
-    },[accountValue, actionValue, balance,userState.currentUser.accountInformation.length])
+    },[accountValue, actionValue, balance])
 
     const clearInputs= ()=>{
       var select = document.getElementsByTagName('select');
