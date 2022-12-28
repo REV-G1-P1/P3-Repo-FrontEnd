@@ -7,6 +7,7 @@ firstName: string,
 lastName: string,
 email:string,
 password: string,
+phoneNumber:number,
 ssn:number,
 address:Addresses,
 accountInformation:accountInformation[]
