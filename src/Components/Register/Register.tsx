@@ -27,6 +27,7 @@ export const RegisterPage:React.FC = () => {
         lastName: '',
         email:'',
         password: '',
+        phoneNumber:0,
         ssn:0,
         address:address,
         accountInformation:[]
@@ -84,6 +85,8 @@ export const RegisterPage:React.FC = () => {
             <input  type ="email" id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
             <label>Password</label>
             <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
+            <label>Phone Number</label>
+            <input type="number" id="phoneNumber"  maxLength={9}  name="phoneNumber" placeholder="phoneNumber" onChange={handleChange} required/>
             <label>SSN</label>
             <input type="number" id="password"  maxLength={9}  name="ssn" placeholder="ssn" onChange={handleChange} required/>
             <div className='loginFormSubmit'>
