@@ -24,6 +24,7 @@ const person:User={
     lastName: "",
     email: "",
     password: "",
+    phoneNumber: 0,
     ssn: 0,
     address: address,
     accountInformation: []
