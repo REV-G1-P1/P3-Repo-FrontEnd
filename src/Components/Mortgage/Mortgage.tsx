@@ -2,23 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import  './Mortgage.css'
 import { DispatchType, RootState } from '../../Redux/Store';
-import { Mortgage } from '../../Types/Mortgage';
+import { MortgageApplication } from '../../Types/Mortgage';
 import { CreateMortgage } from '../../Redux/Slices/MortgageSlice';
+import { getUsers } from '../../Redux/Slices/UserSlice';
 
 export const MortgagePage:React.FC = () => {
     const userState = useSelector((state:RootState) => state.auth);
     const dispatch:DispatchType = useDispatch();
 
-    const [getMortgage, setMortgage] = useState<Mortgage>({
+    const [getMortgage, setMortgage] = useState<MortgageApplication>({
         applicationId: 0,
-        firstName: '',
+        firstName:userState.isLoggedIn? userState.currentUser.firstName:'' ,
         homeValue: 0,
         income: 0,
-        lastName: '',
+        lastName: userState.isLoggedIn? userState.currentUser.lastName:'' ,
         loanAddress: '',
         loanAmount: 0,
-        ssn: 0,
-        status: ''
+        ssn: userState.isLoggedIn? userState.currentUser.ssn:'' ,
+        status: 'PENDING'
     
     });
 
@@ -40,9 +41,10 @@ export const MortgagePage:React.FC = () => {
 
     const handleCreateMortgage = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        console.log(JSON.stringify(getMortgage));
         dispatch(CreateMortgage(getMortgage))
-           
-            clearAllInputs();
+        dispatch(getUsers());
+           // clearAllInputs();
     }
 
     const  clearAllInputs = ()=>{
@@ -66,9 +68,13 @@ export const MortgagePage:React.FC = () => {
             {userState.registeredError  ? <h1 className="h1Auth"></h1> : <></>}
             {userState.isRegistered  ? <h1 className="h1Auth"></h1> : <></>}
             <label>First Name</label>
-            <input id= "first_name" name="firstName" placeholder="first name" onChange={handleChange} required/>
+            <input id= "first_name" name="firstName" placeholder="first name" 
+            value={userState.isLoggedIn? userState.currentUser.firstName:''}
+            onChange={handleChange} required/>
             <label>Last Name</label>
-            <input id= "lastName" name="lastName" placeholder="last name" onChange={handleChange} required/>
+            <input id= "lastName" name="lastName" placeholder="last name" 
+            value={userState.isLoggedIn? userState.currentUser.lastName:''}
+            onChange={handleChange} required/>
             <label>Income</label>
             <input type="number" id="password"  name="income" placeholder="income" onChange={handleChange} required/>
             <label>Home Value</label>
@@ -78,7 +84,9 @@ export const MortgagePage:React.FC = () => {
             <label>Loan Amount</label>
             <input type="number" id="password" name="loanAmount" placeholder="loan amount" onChange={handleChange} required/>
             <label>SSN</label>
-            <input type="number" id="password"  maxLength={9}  name="ssn" placeholder="ssn" onChange={handleChange} required/>
+            <input type="number" id="password"  maxLength={9}  name="ssn" placeholder="ssn" 
+            value={userState.isLoggedIn? userState.currentUser.ssn:''}
+            onChange={handleChange} required/>
             <div className='loginFormSubmit'>
             <button id="login" className="authentication" >Submit</button>
             </div>

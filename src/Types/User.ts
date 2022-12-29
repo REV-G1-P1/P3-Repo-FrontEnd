@@ -1,5 +1,7 @@
 import { accountInformation } from "./AccountInformation"
 import { Addresses } from "./Addresses"
+import {  MortgageApplication } from "./Mortgage"
+import { Transactions } from "./Transactions"
 
 export interface User{
 userId?: number,
@@ -10,7 +12,9 @@ password: string,
 phoneNumber:number,
 ssn:number,
 address:Addresses,
-accountInformation:accountInformation[]
+accountInformation:accountInformation[], 
+mortgageApplication: MortgageApplication[],
+transactions:Transactions[]
 }
 
 

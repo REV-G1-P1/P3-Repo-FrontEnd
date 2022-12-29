@@ -28,7 +28,9 @@ const person:User={
     phoneNumber: 0,
     ssn: 0,
     address: address,
-    accountInformation: []
+    accountInformation: [],
+    mortgageApplication:[],
+    transactions:[]
 }
 
 const initialState:AuthState =  {
@@ -41,7 +43,7 @@ export const registerUser = createAsyncThunk(
     'user/registerUser',
     async(user:User, thunkAPI) => {
         try{
-            const res = await axios.post(`${remoteUrl}/users/register`, user);
+            const res = await axios.post(`${remoteUrl}/users/register`, user,{withCredentials:true});
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Email Already Exist');
@@ -52,7 +54,7 @@ export const login = createAsyncThunk(
     'login-credentials',
     async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-credentials`, user);
+            const res = await axios.post(`${remoteUrl}/login-credentials`, user,{withCredentials:true});
            return res.data;
          
         } catch(e) {
@@ -61,11 +63,24 @@ export const login = createAsyncThunk(
     }
 );
 
+export const getUsers = createAsyncThunk(
+    'getAllUsers',
+    async(thunkAPI) => {
+        try{    
+            const res = await axios.get(`${remoteUrl}/users/get/currentuser`,{withCredentials:true});
+           return res.data;
+         
+        } catch(e) {
+            //return thunkAPI.rejectWithValue('Incorrect username or password');
+        }
+    }
+);
+
 export const loginWithToken = createAsyncThunk(
     'login-token',
     async(token: number, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-token`, {token});
+            const res = await axios.post(`${remoteUrl}/login-token`, {token},{withCredentials:true});
             console.log("userslice login token "+JSON.stringify(res.data));
            return res.data;
          
@@ -79,7 +94,7 @@ export const logoutUser = createAsyncThunk(
     'logout',
     async(thunkAPI) => {
         try{    
-            const res = await axios.get(`${remoteUrl}/log-out`);
+            const res = await axios.get(`${remoteUrl}/log-out`,{withCredentials:true});
         
            console.log(res.data);
          
@@ -123,6 +138,12 @@ export const personSlice = createSlice({
             return state;
         });
         
+        builder.addCase(getUsers.fulfilled, (state, action) => {
+
+            state.currentUser= action.payload;
+            return state;
+        });
+           
         builder.addCase(loginWithToken.fulfilled, (state, action) => {
            
             state.isAuthenticated = true;
@@ -134,7 +155,7 @@ export const personSlice = createSlice({
             localStorage.removeItem("user");
             document.cookie= "SESSION=; Max-Age=-99999999;";
             state.isLoggedIn=false;
-          state.isAuthenticated=false;
+            state.isAuthenticated=false;
 
             state.currentUser=person;
             return state;

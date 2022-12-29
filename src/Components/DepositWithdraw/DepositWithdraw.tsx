@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
-import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
+import { getUsers, updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
@@ -42,6 +42,7 @@ export const DepositWithdrawPage:React.FC= ()=>{
         }else{
           dispatch(UpdateRemoteBalance(changeBalance!));
           dispatch(updateLocalBalance(changeBalance));  
+          dispatch(getUsers());
           clearInputs();
     }
   }

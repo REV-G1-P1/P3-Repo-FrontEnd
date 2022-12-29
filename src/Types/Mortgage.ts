@@ -1,4 +1,4 @@
-export interface Mortgage{
+export interface MortgageApplication{
     applicationId: number,
     firstName: string,
     homeValue: number,

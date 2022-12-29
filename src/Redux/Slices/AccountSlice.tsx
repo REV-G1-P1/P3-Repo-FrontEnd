@@ -16,7 +16,7 @@ export const UpdateRemoteBalance = createAsyncThunk(
     'account/update',
     async(account:updateBalance, thunkAPI) => {
         try{         
-            const res = await axios.put(`${remoteUrl}/accounts/update/balance`, account);
+            const res = await axios.put(`${remoteUrl}/accounts/update/balance`, account, {withCredentials:true});
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Unable to complete the transaction');

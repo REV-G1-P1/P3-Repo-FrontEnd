@@ -29,7 +29,9 @@ let navigate = useNavigate();
         phoneNumber: userState.currentUser.phoneNumber,
         ssn:userState.currentUser.ssn,
         address:address,
-        accountInformation:[]
+        accountInformation:[],
+        mortgageApplication:[],
+        transactions:[]
     
     });
 

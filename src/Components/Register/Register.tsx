@@ -3,10 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import  './Register.css'
 import { Link, useNavigate} from 'react-router-dom';
 import { DispatchType, RootState } from '../../Redux/Store';
-import { registerUser, userInformation } from '../../Redux/Slices/UserSlice';
+import {  userInformation } from '../../Redux/Slices/UserSlice';
 import { User } from '../../Types/User';
 import { Addresses } from '../../Types/Addresses';
-import { accountInformation, AccountType } from '../../Types/AccountInformation';
 
 
 export const RegisterPage:React.FC = () => {
@@ -30,7 +29,9 @@ export const RegisterPage:React.FC = () => {
         phoneNumber:0,
         ssn:0,
         address:address,
-        accountInformation:[]
+        accountInformation:[],
+        mortgageApplication:[],
+        transactions:[]
     
     });
 
@@ -75,8 +76,10 @@ export const RegisterPage:React.FC = () => {
 
             <form id="auth" onSubmit={handleRegisterUser}>
             <h1 className="h1Auth">Register</h1>
-            {userState.registeredError  ? <h1 className="h1Auth">Email Already Exist</h1> : <></>}
-            {userState.isRegistered  ? <h1 className="h1Auth">Please Login Now</h1> : <></>}
+            {//userState.registeredError  ? <h1 className="h1Auth">Email Already Exist</h1> : <></>
+            }
+            {//userState.isRegistered  ? <h1 className="h1Auth">Please Login Now</h1> : <></>
+            }
             <label>First Name</label>
             <input id= "first_name" name="firstName" placeholder="first name" onChange={handleChange} required/>
             <label>Last Name</label>
@@ -84,7 +87,7 @@ export const RegisterPage:React.FC = () => {
             <label>Email</label>
             <input  type ="email" id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
             <label>Password</label>
-            <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
+            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" placeholder="password" onChange={handleChange} required/>
             <label>Phone Number</label>
             <input type="number" id="phoneNumber"  maxLength={9}  name="phoneNumber" placeholder="phoneNumber" onChange={handleChange} required/>
             <label>SSN</label>
