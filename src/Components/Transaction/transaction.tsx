@@ -11,7 +11,7 @@ return (
             <p>{accountType}</p>
             <p>{balanceChange}</p>
             <p>{transactionType}</p>
-            <p>{transactionTime}</p>
+            <p>{`${transactionTime[1]}/${transactionTime[2]}/${transactionTime[0]}`}</p>
             </div>
         </div>
     </>
