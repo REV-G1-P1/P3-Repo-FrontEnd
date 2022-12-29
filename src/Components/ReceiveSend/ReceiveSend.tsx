@@ -42,7 +42,9 @@ export const ReceiveSendPage:React.FC= ()=>{
         }else{
           dispatch(UpdateRemoteBalance(changeBalance!));
           dispatch(updateLocalBalance(changeBalance));  
-          dispatch(getUsers());
+          setTimeout(() => {
+              dispatch(getUsers());
+          }, 2000);
           clearInputs();
     }
   }
