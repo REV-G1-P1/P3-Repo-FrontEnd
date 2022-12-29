@@ -43,7 +43,7 @@ export const registerUser = createAsyncThunk(
     'user/registerUser',
     async(user:User, thunkAPI) => {
         try{
-            const res = await axios.post(`${remoteUrl}/users/register`, user);
+            const res = await axios.post(`${remoteUrl}/users/register`, user, {withCredentials:true});
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Email Already Exist');
@@ -54,7 +54,7 @@ export const login = createAsyncThunk(
     'login-credentials',
     async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-credentials`, user);
+            const res = await axios.post(`${remoteUrl}/login-credentials`, user, {withCredentials:true});
            return res.data;
          
         } catch(e) {
@@ -80,7 +80,7 @@ export const loginWithToken = createAsyncThunk(
     'login-token',
     async(token: number, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-token`, {token});
+            const res = await axios.post(`${remoteUrl}/login-token`, {token}, {withCredentials:true});
             console.log("userslice login token "+JSON.stringify(res.data));
            return res.data;
          

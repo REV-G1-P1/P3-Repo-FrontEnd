@@ -17,7 +17,7 @@ export const CreateMortgage = createAsyncThunk(
     'mortgage/create',
     async(mortgage:MortgageApplication, thunkAPI) => {
         try{         
-            const res = await axios.post(`${remoteUrl}/mortgages/create`, mortgage);
+            const res = await axios.post(`${remoteUrl}/mortgages/create`, mortgage, {withCredentials:true});
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Unable to create a mortgage');

@@ -40,9 +40,8 @@ export const ReceiveSendPage:React.FC= ()=>{
           })},3000);
           clearInputs();
         }else{
-          dispatch(UpdateRemoteBalance(changeBalance!));
-          dispatch(updateLocalBalance(changeBalance));  
-          dispatch(getUsers());
+          dispatch(UpdateRemoteBalance(changeBalance!))
+          .then(() => dispatch(getUsers()));
           clearInputs();
     }
   }
