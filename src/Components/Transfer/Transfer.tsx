@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
-import { getUsers, updateLocalBalance } from '../../Redux/Slices/UserSlice';
+import { getUsers } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
@@ -92,13 +92,13 @@ setBalance(0);
                 <div className='TransferContainer'>
                     <select id="fromAccount" onChange={handleAccountChangeFrom}>
                         <option>Account Selection From</option>
-                        <option value="0">{accounts[0]?.accountType}</option>
-                        <option value="1">{accounts[1]?.accountType}</option>
+                        <option value="0">{accounts[0]?.accountNumber}</option>
+                        <option value="1">{accounts[1]?.accountNumber}</option>
                     </select>
                     <select id="fromAccount" onChange={handleAccountChangeTo}>
                         <option>Action Selection to</option>
-                        <option value="0">{accounts[0]?.accountType}</option>
-                        <option value="1">{accounts[1]?.accountType}</option>
+                        <option value="0">{accounts[0]?.accountNumber}</option>
+                        <option value="1">{accounts[1]?.accountNumber}</option>
                     </select>
                     <div className='TransferButtonsContainer'>
                         <input className='TransferPriceElement' type='number' value={balance} onChange={handleAmountChange} required></input>

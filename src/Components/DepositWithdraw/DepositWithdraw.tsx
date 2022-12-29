@@ -1,16 +1,15 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
-import { getUsers, updateLocalBalance } from '../../Redux/Slices/UserSlice';
+import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
-import './ReceiveSend.css'
+import './DepositWithdraw.css'
 
-export const ReceiveSendPage:React.FC= ()=>{
+export const DepositWithdrawPage:React.FC= ()=>{
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser?
-    userState.currentUser.accountInformation:[];
+    const accounts:accountInformation[] = userState.currentUser.accountInformation;
     const dispatch:DispatchType = useDispatch();
       const [accountValue, setAccountValue] = useState("");
       const [actionValue, setActionValue] = useState("");
@@ -26,9 +25,9 @@ export const ReceiveSendPage:React.FC= ()=>{
         setActionValue(e.target.value);
       };
 
-      const handleReceiveSend= (e: { preventDefault: () => void; })=>{
+      const handleDepositWithdraw= (e: { preventDefault: () => void; })=>{
         e.preventDefault();
-        if(accounts[Number(accountValue)].balance-balance<0 && actionValue==="send")
+        if(accounts[Number(accountValue)].balance-balance<0 && actionValue==="withdraw")
         {
           setError({
             showError:true,
@@ -40,8 +39,8 @@ export const ReceiveSendPage:React.FC= ()=>{
           })},3000);
           clearInputs();
         }else{
-          dispatch(UpdateRemoteBalance(changeBalance!))
-          .then(() => dispatch(getUsers()));
+          dispatch(UpdateRemoteBalance(changeBalance!));
+          dispatch(updateLocalBalance(changeBalance));  
           clearInputs();
     }
   }
@@ -54,14 +53,14 @@ export const ReceiveSendPage:React.FC= ()=>{
 
     useEffect(()=>{
    
-      if(actionValue==="receive"){
+      if(actionValue==="deposit"){
         setChangeBalance({
            index: Number(accountValue),
            accountNumber:accounts[Number(accountValue)]?.accountNumber,
            balance:Number(accounts[Number(accountValue)]?.balance)+Number(balance)        
     });
     
-    }else if(actionValue==="send")
+    }else if(actionValue==="withdraw")
     {
      
         setChangeBalance({
@@ -74,38 +73,57 @@ export const ReceiveSendPage:React.FC= ()=>{
     
   }
     
-    },[accountValue, actionValue, balance])
+    },[accountValue, actionValue, balance,userState.currentUser.accountInformation.length])
 
     const clearInputs= ()=>{
-        var select = document.getElementsByTagName('select');
-        for(var i = 0; i < select.length; i++) {
-            select[i].selectedIndex = 0;
-        }
-        setBalance(0);
-    }
-
+      var select = document.getElementsByTagName('select');
+for (var i = 0; i < select.length; i++)
+{
+  select[i].selectedIndex = 0;
+}
+setBalance(0);
+  }
     return (
         <>
-            <form className='TransferRootContainer' onSubmit={handleReceiveSend}>
-                <h1 className= "TransferHeader">Receive / Send</h1>
-                <div className='TransferContainer'>
-                    <select id="fromAccount" onChange={handleAccountChange}>
-                        <option value="default">Account Selection</option>
-                        <option value="0">{accounts[0]?.accountNumber}</option>
-                        <option value="1">{accounts[1]?.accountNumber}</option>
-                    </select>
-                    <select id="withAction" onChange={handleActionChange}>
-                        <option>Requested Action</option>
-                        <option value="receive">Receive</option>
-                        <option value="send">Send</option>
-                    </select>
-                    <div className='TransferButtonsContainer'>
-                        <input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange} required></input>
-                        <button>Submit</button>
-                    </div>
-                    <p>{error?.showError? error.message:''}</p>
-                </div>
-            </form>
+        <form className='TransferRootContainer' onSubmit={handleDepositWithdraw}>
+         <h1 className= "TransferHeader">Deposit/ Withdraw</h1>
+         <div className='TransferContainer'>
+      
+           <select id="fromAccount" onChange={handleAccountChange}>
+            
+            <option value="default">
+Account Selection  
+            </option>
+            
+            <option value="0">
+{accounts[0]?.accountType}
+            </option>
+            <option value="1">
+{accounts[1]?.accountType}
+            </option>
+           </select>
+          
+           <select id="withAction" onChange={handleActionChange}>
+            <option>
+Requested Action 
+            </option>
+            <option value="deposit">
+Deposit            </option>
+            <option value="withdraw">
+Withdraw
+            </option>
+           </select>
+          
+            <div className='TransferButtonsContainer'>
+<input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange} required></input>
+<button >Submit</button>
+
+            </div>
+            <p>{error?.showError? error.message:''}</p>
+         </div>
+        
+        </form>
+        
         </>
     )
 }
