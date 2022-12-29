@@ -86,7 +86,7 @@ align-items: center;
     .RightHomeContainer{
        width:100%;
     }
-    #depositWithdrawPage{
+    #receiveSendPage{
         display: none;
     }
     #transferPage{
@@ -99,7 +99,7 @@ align-items: center;
 
 @media (min-width: 600px)  {
    
-     #depositWithdrawPage{
+     #receiveSendPage{
          display:flex !important;
      }
      #transferPage{
