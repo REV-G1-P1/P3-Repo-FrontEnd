@@ -80,7 +80,7 @@ export const loginWithToken = createAsyncThunk(
     'login-token',
     async(token: number, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-token`, {token});
+            const res = await axios.post(`${remoteUrl}/login-token`, {token},{withCredentials:true});
             console.log("userslice login token "+JSON.stringify(res.data));
            return res.data;
          
