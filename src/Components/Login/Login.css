@@ -33,6 +33,10 @@ margin-top: 30px;
 
 }
 
+.dangerSpan{
+    color: red;
+}
+
 .loginFormSubmit{
     width: 100%;
     display: flex;

@@ -12,6 +12,7 @@ export const LoginPage:React.FC= ()=>{
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [valError, setValError] = useState<string>("");
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === "email"){
@@ -56,12 +57,22 @@ export const LoginPage:React.FC= ()=>{
             <h1 className="h1Auth">Login</h1>
             {userState.loginError ? <h3>Username or password incorrect</h3> : <></>}
             <label>Email</label>
-            <input type="email" id= "email" name="email" placeholder="email address..." onChange={handleChange} required />
+            <input type="email" id= "email" name="email" 
+             onInvalid={()=>{setValError("Please a valid email")}}
+             onInput={ ()=>{setValError('')}}
+            placeholder="email address..." onChange={handleChange} required />
+            <span className='dangerSpan'>{valError}</span>
             <label>Password</label>
-            <input type="password" id="password" maxLength={12} minLength={5} name="password" placeholder="password..." onChange={handleChange} required />
+            <input type="password"  id="password" maxLength={12} minLength={5} 
+           // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            onInvalid={()=>{setValError("Please enter a strong password")}}
+            onInput={ ()=>{setValError('')}}
+            name="password" placeholder="password..." onChange={handleChange} required />
+             <span className='dangerSpan'>{valError}</span>
             <div className='loginFormSubmit'>
             <button id="login"  className="authentication" >Login</button>
             <Link to="/register" className="registerLinkFromLogin">register</Link></div>
+           
             </form>
           
         </div>

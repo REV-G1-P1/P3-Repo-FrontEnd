@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateRemoteBalance } from '../../Redux/Slices/AccountSlice';
-import { updateLocalBalance } from '../../Redux/Slices/UserSlice';
+import { getUsers, updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
@@ -54,6 +54,7 @@ export const TransferPage:React.FC= ()=>{
             dispatch(UpdateRemoteBalance(changeBalanceTo!));
             dispatch(updateLocalBalance(changeBalanceFrom));
             dispatch(updateLocalBalance(changeBalanceTo));
+            dispatch(getUsers());
           
         clearInputs();
         }

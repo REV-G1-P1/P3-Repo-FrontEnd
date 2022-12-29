@@ -3,3 +3,10 @@ html, body{
     height: 100%;
 }
 
+button{
+    background-color: #409E58;
+    color:white;
+    padding: 10px;
+    align-self: center;
+}
+

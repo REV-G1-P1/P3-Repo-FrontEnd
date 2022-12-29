@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import { updateBalance } from "../../Types/AccountInformation";
-import { Mortgage } from "../../Types/Mortgage";
+import { MortgageApplication } from "../../Types/Mortgage";
 import { remoteUrl } from "../../Types/URL";
 
 
@@ -15,9 +15,9 @@ isUpdated:true
 
 export const CreateMortgage = createAsyncThunk(
     'mortgage/create',
-    async(mortgage:Mortgage, thunkAPI) => {
+    async(mortgage:MortgageApplication, thunkAPI) => {
         try{         
-            const res = await axios.put(`${remoteUrl}/mortgages/create`, mortgage);
+            const res = await axios.post(`${remoteUrl}/mortgages/create`, mortgage);
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Unable to create a mortgage');

@@ -7,6 +7,11 @@ import { RootState } from "../../Redux/Store";
 import { accountInformation } from "../../Types/AccountInformation";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Transactions } from "../../Types/Transactions";
+import { TransactionPage } from "../Transaction/transaction";
+import { MortgageApplication } from "../../Types/Mortgage";
+import { MortgageApplicationPage } from "../MortgageApplications/MortgageApplications";
+
 
 export const HomePage:React.FC= ()=>{
     
@@ -30,8 +35,8 @@ export const HomePage:React.FC= ()=>{
         }
 
         useEffect( ()=>{
-       
-        },[userState.currentUser])
+       if(!userState.isLoggedIn) navigate('/login')
+        },[])
     
     return (
         <>
@@ -56,6 +61,26 @@ export const HomePage:React.FC= ()=>{
                 
             })
            :<></>
+
+           
+       }
+
+{
+         userState.currentUser?
+           userState.currentUser.mortgageApplication?.map((mortage:MortgageApplication) => {
+
+                return <MortgageApplicationPage key={mortage.applicationId} 
+                applicationId={mortage.applicationId} firstName={mortage.firstName} 
+                homeValue={mortage.homeValue} income= {mortage.income}
+                lastName = {mortage.lastName}   
+                loanAddress={mortage.loanAddress} loanAmount={mortage.loanAmount} 
+                ssn={mortage.ssn} status= {mortage.status}
+                            />
+                
+            })
+           :<></>
+
+           
        }
                 </div>
                 <div className="CenterHomeContainer"></div>
@@ -76,7 +101,22 @@ export const HomePage:React.FC= ()=>{
            </div>
             </div>
 
-        </div>
+            <div className= "EndtHomeContainer">
+            <h1>Transactions</h1>
+            {
+         userState.currentUser?
+           userState.currentUser.transactions?.map((transaction:Transactions) => {
+               
+                return <TransactionPage key={transaction.transactionId} transactionId={transaction.transactionId}
+                accountNumber={transaction.accountNumber} accountType={transaction.accountType}
+                balanceChange={transaction.balanceChange} transactionType={transaction.transactionType}
+                transactionTime={transaction.transactionTime}         />
+                
+            })
+           :<></>
+       }
+           </div>
+            </div>
         </div>
         </>
     )
