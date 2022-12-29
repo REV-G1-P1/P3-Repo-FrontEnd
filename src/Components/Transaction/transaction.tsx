@@ -5,20 +5,15 @@ export const TransactionPage:React.FC<Transactions> = ({  transactionId,accountN
 return (
 
     <>
-    <div className="transactionRoot">
-         
-         <div className="transactionContainer">
-           
-          <p> {accountNumber}</p>
-          <p>{accountType}</p>
-          <p>{balanceChange}</p>
-          <p>{transactionType}</p>
-          <p>{transactionTime}</p>
-            
-         </div>
-
-    </div>
-    
+        <div className="transactionRoot">
+            <div className="transactionContainer">
+            <p>{accountNumber}</p>
+            <p>{accountType}</p>
+            <p>{balanceChange}</p>
+            <p>{transactionType}</p>
+            <p>{transactionTime}</p>
+            </div>
+        </div>
     </>
 )
 }

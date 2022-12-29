@@ -1,7 +1,7 @@
 import { AccountPage } from "../Account/Account"
 import './Home.css'
 import { TransferPage } from "../Transfer/Transfer";
-import { DepositWithdrawPage } from "../DepositWithdraw/DepositWithdraw";
+import { ReceiveSendPage } from "../ReceiveSend/ReceiveSend";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store";
 import { accountInformation } from "../../Types/AccountInformation";
@@ -21,12 +21,12 @@ export const HomePage:React.FC= ()=>{
         const handleTransferButton= (e: { preventDefault: () => void; })=>{
             e.preventDefault();
             document.getElementById("transferPage")!.style.display="block";
-            document.getElementById("depositWithdrawPage")!.style.display="none";
+            document.getElementById("receiveSendPage")!.style.display="none";
         }
-        const handleDepositButton= (e: { preventDefault: () => void; })=>{
+        const handleReceiveButton= (e: { preventDefault: () => void; })=>{
             e.preventDefault();
             document.getElementById("transferPage")!.style.display="none";
-            document.getElementById("depositWithdrawPage")!.style.display="block";
+            document.getElementById("receiveSendPage")!.style.display="block";
         }
 
         const handleMorgageButton= (e: { preventDefault: () => void; })=>{
@@ -86,7 +86,7 @@ export const HomePage:React.FC= ()=>{
                 <div className="CenterHomeContainer"></div>
                 <div className='MobileAccountButtons'>
                 <button className="flex-button" onClick={handleTransferButton}> Transfer</button>
-                <button className="flex-button" onClick={handleDepositButton}>Withdraw/Deposit</button>
+                <button className="flex-button" onClick={handleReceiveButton}>Send/Receive</button>
                 <button className="flex-button" onClick={handleMorgageButton}>Apply For Mortgage</button>
 
             </div>
@@ -96,8 +96,8 @@ export const HomePage:React.FC= ()=>{
            <TransferPage />
            </div>
            <br/>
-           <div id="depositWithdrawPage">
-           <DepositWithdrawPage/>
+           <div id="receiveSendPage">
+           <ReceiveSendPage/>
            </div>
             </div>
 
@@ -107,12 +107,17 @@ export const HomePage:React.FC= ()=>{
          userState.currentUser?
            userState.currentUser.transactions?.map((transaction:Transactions) => {
                
-                return <TransactionPage key={transaction.transactionId} transactionId={transaction.transactionId}
-                accountNumber={transaction.accountNumber} accountType={transaction.accountType}
-                balanceChange={transaction.balanceChange} transactionType={transaction.transactionType}
-                transactionTime={transaction.transactionTime}         />
-                
-            })
+                return (
+                    <TransactionPage key={transaction.transactionId} 
+                        transactionId={transaction.transactionId}
+                        accountNumber={transaction.accountNumber} 
+                        accountType={transaction.accountType}
+                        balanceChange={transaction.balanceChange} 
+                        transactionType={transaction.transactionType}
+                        transactionTime={transaction.transactionTime}
+                    />
+                )
+           })
            :<></>
        }
            </div>

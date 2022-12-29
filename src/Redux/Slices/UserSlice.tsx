@@ -43,7 +43,7 @@ export const registerUser = createAsyncThunk(
     'user/registerUser',
     async(user:User, thunkAPI) => {
         try{
-            const res = await axios.post(`${remoteUrl}/users/register`, user,{withCredentials:true});
+            const res = await axios.post(`${remoteUrl}/users/register`, user);
             return res.data;
         } catch(e) {
             return thunkAPI.rejectWithValue('Email Already Exist');
@@ -54,7 +54,7 @@ export const login = createAsyncThunk(
     'login-credentials',
     async(user:loginUser, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-credentials`, user,{withCredentials:true});
+            const res = await axios.post(`${remoteUrl}/login-credentials`, user);
            return res.data;
          
         } catch(e) {
@@ -80,7 +80,7 @@ export const loginWithToken = createAsyncThunk(
     'login-token',
     async(token: number, thunkAPI) => {
         try{    
-            const res = await axios.post(`${remoteUrl}/login-token`, {token},{withCredentials:true});
+            const res = await axios.post(`${remoteUrl}/login-token`, {token});
             console.log("userslice login token "+JSON.stringify(res.data));
            return res.data;
          
@@ -153,7 +153,6 @@ export const personSlice = createSlice({
         });
         builder.addCase(logoutUser.fulfilled, (state,action) => {
             localStorage.removeItem("user");
-            document.cookie= "SESSION=; Max-Age=-99999999;";
             state.isLoggedIn=false;
             state.isAuthenticated=false;
 

@@ -87,7 +87,7 @@ export const RegisterPage:React.FC = () => {
             <label>Email</label>
             <input  type ="email" id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
             <label>Password</label>
-            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" placeholder="password" onChange={handleChange} required/>
+            <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
             <label>Phone Number</label>
             <input type="number" id="phoneNumber"  maxLength={9}  name="phoneNumber" placeholder="phoneNumber" onChange={handleChange} required/>
             <label>SSN</label>
@@ -103,3 +103,5 @@ export const RegisterPage:React.FC = () => {
 
 
 }
+
+// pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
