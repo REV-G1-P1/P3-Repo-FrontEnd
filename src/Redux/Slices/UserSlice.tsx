@@ -153,6 +153,7 @@ export const personSlice = createSlice({
         });
         builder.addCase(logoutUser.fulfilled, (state,action) => {
             localStorage.removeItem("user");
+            document.cookie= "SESSION=; Max-Age=-99999999;";
             state.isLoggedIn=false;
             state.isAuthenticated=false;
 
