@@ -43,7 +43,7 @@ export const MortgagePage:React.FC = () => {
         e.preventDefault();
         console.log(JSON.stringify(getMortgage));
         dispatch(CreateMortgage(getMortgage))
-        dispatch(getUsers());
+        .then(() => dispatch(getUsers()));
            // clearAllInputs();
     }
 
