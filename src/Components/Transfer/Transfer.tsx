@@ -50,11 +50,9 @@ export const TransferPage:React.FC= ()=>{
           clearInputs();
         }else
         {
-            dispatch(UpdateRemoteBalance(changeBalanceFrom!));
-            dispatch(UpdateRemoteBalance(changeBalanceTo!));
-            dispatch(updateLocalBalance(changeBalanceFrom));
-            dispatch(updateLocalBalance(changeBalanceTo));
-            dispatch(getUsers());
+            dispatch(UpdateRemoteBalance(changeBalanceFrom!))
+            .then(() => dispatch(UpdateRemoteBalance(changeBalanceTo!)))
+            .then(() => dispatch(getUsers()));
           
         clearInputs();
         }
