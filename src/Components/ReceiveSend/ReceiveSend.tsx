@@ -5,81 +5,74 @@ import { getUsers, updateLocalBalance } from '../../Redux/Slices/UserSlice';
 import { DispatchType, RootState } from '../../Redux/Store';
 import { accountInformation, updateBalance } from '../../Types/AccountInformation';
 import { ErrorType } from '../../Types/Error';
-import './ReceiveSend.css'
+import './ReceiveSend.css';
 
-export const ReceiveSendPage:React.FC= ()=>{
+export const ReceiveSendPage:React.FC= () => {
+
     const userState = useSelector((state:RootState) => state.auth);
-    const accounts:accountInformation[] = userState.currentUser?
-    userState.currentUser.accountInformation:[];
+    const accounts:accountInformation[] = userState.currentUser ?
+        userState.currentUser.accountInformation:[];
     const dispatch:DispatchType = useDispatch();
-      const [accountValue, setAccountValue] = useState("");
-      const [actionValue, setActionValue] = useState("");
-      const [balance, setBalance] = useState(0);
-      const [changeBalance, setChangeBalance] = useState<updateBalance>();
-      const [error, setError] = useState<ErrorType>();
+    const [accountValue, setAccountValue] = useState("");
+    const [actionValue, setActionValue] = useState("");
+    const [balance, setBalance] = useState(0);
+    const [changeBalance, setChangeBalance] = useState<updateBalance>();
+    const [error, setError] = useState<ErrorType>();
       
-      const handleAccountChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+    const handleAccountChange = (e: { target: { value: SetStateAction<string>; }; }) => {
         setAccountValue(e.target.value);
-      };
+    };
 
-      const handleActionChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+    const handleActionChange = (e: { target: { value: SetStateAction<string>; }; }) => {
         setActionValue(e.target.value);
-      };
+    };
 
-      const handleReceiveSend= (e: { preventDefault: () => void; })=>{
+    const handleReceiveSend= (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        if(accounts[Number(accountValue)].balance-balance<0 && actionValue==="send")
-        {
-          setError({
-            showError:true,
-            message:'Insufficient Balance'
-          })
-          setInterval(function(){ setError({
-            showError:false,
-            message:''
-          })},3000);
-          clearInputs();
-        }else{
-          dispatch(UpdateRemoteBalance(changeBalance!))
-          .then(() => dispatch(getUsers()));
-          clearInputs();
-    }
-  }
-
-    const handleAmountChange= (e: { target: { value: any; }; })=>{
-                 setBalance(
-                   e.target.value
-                 )
+        if(accounts[Number(accountValue)].balance-balance<0 && actionValue === "send") {
+            setError({
+                showError:true,
+                message:'Insufficient Balance'
+            })
+            setInterval(function(){ setError({
+                showError:false,
+                message:''
+            })},3000);
+            clearInputs();
+        } else {
+            dispatch(UpdateRemoteBalance(changeBalance!))
+            .then(() => dispatch(getUsers()));
+            clearInputs();
+        }
     }
 
-    useEffect(()=>{
-   
-      if(actionValue==="receive"){
-        setChangeBalance({
-           index: Number(accountValue),
-           accountNumber:accounts[Number(accountValue)]?.accountNumber,
-           balance:Number(accounts[Number(accountValue)]?.balance)+Number(balance)        
-    });
+    const handleAmountChange= (e: { target: { value: any; }; }) => {
+        setBalance(e.target.value);
+    }
+
+    useEffect(() => {
+        if(actionValue==="receive") {
+            setChangeBalance({
+                index: Number(accountValue),
+                accountNumber:accounts[Number(accountValue)]?.accountNumber,
+                balance:Number(accounts[Number(accountValue)]?.balance)+Number(balance)        
+            });
     
-    }else if(actionValue==="send")
-    {
-     
-        setChangeBalance({
-            index: Number(accountValue),
-            accountNumber:accounts[Number(accountValue)]?.accountNumber,
-            balance:accounts[Number(accountValue)]?.balance-balance<0
-            ?accounts[Number(accountValue)]?.balance
-            :accounts[Number(accountValue)]?.balance-balance       
-     });
-    
-  }
-    
+        } else if (actionValue === "send") {
+            setChangeBalance({
+                index: Number(accountValue),
+                accountNumber:accounts[Number(accountValue)]?.accountNumber,
+                balance:accounts[Number(accountValue)]?.balance-balance < 0
+                    ? accounts[Number(accountValue)]?.balance
+                    : accounts[Number(accountValue)]?.balance-balance
+            });
+        }
     },[accountValue, actionValue, balance])
 
-    const clearInputs= ()=>{
-        var select = document.getElementsByTagName('select');
-        for(var i = 0; i < select.length; i++) {
-            select[i].selectedIndex = 0;
+    const clearInputs = () => {
+        const select = Array.from(document.getElementsByTagName('select'));
+        for(const element of select) {
+            element.selectedIndex = 0;
         }
         setBalance(0);
     }
@@ -109,4 +102,3 @@ export const ReceiveSendPage:React.FC= ()=>{
         </>
     )
 }
-

@@ -5,12 +5,12 @@ import { MortgageApplication } from "../../Types/Mortgage";
 import { remoteUrl } from "../../Types/URL";
 
 
-export interface MortgageState{
+export interface MortgageState {
    isUpdated:boolean
 }
 
 const initialState:MortgageState =  {
-isUpdated:true
+    isUpdated:true
 };
 
 export const CreateMortgage = createAsyncThunk(
@@ -35,15 +35,12 @@ export const mortgageSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(CreateMortgage.fulfilled, (state, action) => {
-          
             return state;
         });
       
         builder.addCase(CreateMortgage.rejected, (state,action) => {
             return state
         });
-     
     }
 });
-
 export default mortgageSlice.reducer;
