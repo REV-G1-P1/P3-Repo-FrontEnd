@@ -97,21 +97,23 @@ export const HomePage:React.FC= ()=>{
 
                     <div className= "EndtHomeContainer">
                         <h1>Transactions</h1>
-                        { userState.currentUser ?
-                            userState.currentUser.transactions?.map((transaction:Transactions) => {
-                                return (
-                                    <TransactionPage key={transaction.transactionId} 
-                                        transactionId={transaction.transactionId}
-                                        accountNumber={transaction.accountNumber} 
-                                        accountType={transaction.accountType}
-                                        balanceChange={transaction.balanceChange} 
-                                        transactionType={transaction.transactionType}
-                                        transactionTime={transaction.transactionTime}
-                                    />
-                                )
-                            })
-                            :<></>
-                        }
+                        <div style={{overflowY: 'scroll', height: '455px'}}>
+                            { userState.currentUser ?
+                                userState.currentUser.transactions?.map((transaction:Transactions) => {
+                                    return (
+                                        <TransactionPage key={transaction.transactionId} 
+                                            transactionId={transaction.transactionId}
+                                            accountNumber={transaction.accountNumber} 
+                                            accountType={transaction.accountType}
+                                            balanceChange={transaction.balanceChange} 
+                                            transactionType={transaction.transactionType}
+                                            transactionTime={transaction.transactionTime}
+                                        />
+                                    )
+                                })
+                                :<></>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

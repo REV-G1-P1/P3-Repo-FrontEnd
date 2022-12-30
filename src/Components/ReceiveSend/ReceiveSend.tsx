@@ -77,6 +77,11 @@ export const ReceiveSendPage:React.FC= () => {
         setBalance(0);
     }
 
+    const errorStyle = {
+        color: "red",
+        fontSize: "18px"
+    }
+
     return (
         <>
             <form className='TransferRootContainer' onSubmit={handleReceiveSend}>
@@ -96,7 +101,7 @@ export const ReceiveSendPage:React.FC= () => {
                         <input className='TransferPriceElement' type='number' value ={balance} onChange={handleAmountChange} required></input>
                         <button>Submit</button>
                     </div>
-                    <p>{error?.showError? error.message:''}</p>
+                    {error?.showError ? <p style={errorStyle}>{error.message}</p> : ''}
                 </div>
             </form>
         </>
