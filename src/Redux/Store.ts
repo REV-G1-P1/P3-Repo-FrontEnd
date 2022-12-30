@@ -8,17 +8,15 @@ import personSlice  from "./Slices/UserSlice";
 const persistConfig = {
     key: 'root',
     storage,
-  }
+}
 
-  const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
+const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
     if (action.type === 'auth/logout') {
-  
-      storage.removeItem('persist:root')
-  
-      state = {} as RootState
+        storage.removeItem('persist:root')
+        state = {} as RootState
     }
-    return appReducer(state, action)
-  }
+    return appReducer(state, action);
+};
 
   const appReducer = combineReducers({ 
      auth: personSlice,
@@ -27,11 +25,10 @@ const persistConfig = {
 
   })
   
-  const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const Store = configureStore({
     reducer: persistedReducer,
-    
     devTools:true
 });
 

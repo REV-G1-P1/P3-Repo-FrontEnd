@@ -14,22 +14,20 @@ import TwoFactorAuth from "./Components/TwoFactorAuth/TwoFactorAuth";
 function App() {
     return (
         <div className="App">
-
-          <BrowserRouter>
-          <HeaderPage />
-    <Routes>
-    <Route path="" element={<LoginPage />}/>
-        <Route path="/login" element={<LoginPage />}/>
-        <Route path="/authentication" element={<TwoFactorAuth />}/>
-        <Route path="/register" element={<RegisterPage />}/>
-        <Route path="/address" element={<AddressPage />}/>
-        <Route path="/home" element={<HomePage />}/>
-        <Route path="/admin" element={<ManagerPage />}/>
-        <Route path="/mortgage" element={<MortgagePage />}/>
-        <Route path="/modal" element={<ModalPage />}/>
-    </Routes>
-    <Footer />
-    </BrowserRouter>
+            <BrowserRouter>
+                <HeaderPage />
+                <Routes>
+                    <Route path="" element={<LoginPage />}/>
+                    <Route path="/login" element={<LoginPage />}/>
+                    <Route path="/authentication" element={<TwoFactorAuth />}/>
+                    <Route path="/register" element={<RegisterPage />}/>
+                    <Route path="/address" element={<AddressPage />}/>
+                    <Route path="/home" element={<HomePage />}/>
+                    <Route path="/mortgage" element={<MortgagePage />}/>
+                    <Route path="/modal" element={<ModalPage />}/>
+                </Routes>
+                <Footer />
+            </BrowserRouter>
         </div>
     );
 }

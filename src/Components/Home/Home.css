@@ -1,34 +1,16 @@
 .HomeRootContainer{
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;   
-margin-left: 20px;
-width: 100%;
-gap:20px;
-}
-
-.LeftHomeContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width:40%;
+    flex-direction: column;   
+    margin-left: 20px;
+    width: 100%;
 }
 
-.RightHomeContainer{
-
-display: flex;
-flex-direction: column;
-align-items: center;
-
-}
-
-.EndtHomeContainer{
-   
-    border: solid;
-    height:fit-content;
-    padding-left: 5px;
-    padding-bottom: 5px;
+.HomeAccountContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    width: 60%;
 }
 
 .MortgageHomeTitle{
@@ -68,15 +50,38 @@ align-items: center;
     flex-direction: row;
 }
 
+.LeftHomeContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width:35%;
+}
 
+.RightHomeContainer{
+    width:25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-
+.EndtHomeContainer{
+    width:35%;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    border-radius: 5%;
+    padding: 7px 20px 10px 20px;
+    border: 2px solid rgb(168, 168, 168);
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+}
 
 .MobileAccountButtons{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    display:none;
     font-size: 0.7em;
     width: 100%;
 }
@@ -115,3 +120,19 @@ align-items: center;
          display: none;
      }
  }
+
+.EndtHomeContainer {
+    
+}
+
+.EndtHomeContainer h1 {
+    align-self: center;
+    border: solid;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: 1.5em;
+    width: 90%;
+    text-transform: uppercase;
+    background-color: #000000;
+    color: #56d676;
+}
