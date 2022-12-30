@@ -20,7 +20,7 @@
 
 .homeMortgageContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap:10px;
     justify-content: center;
@@ -78,6 +78,14 @@
     margin-bottom: 10px;
 }
 
+.mortgageHomeContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    width: 100%;
+}
+
 .MobileAccountButtons{
     display: flex;
     flex-direction: row;
@@ -120,10 +128,6 @@
          display: none;
      }
  }
-
-.EndtHomeContainer {
-    
-}
 
 .EndtHomeContainer h1 {
     align-self: center;
