@@ -1,4 +1,4 @@
-export interface Transactions{
+export interface Transactions {
     transactionId:number,
     accountType:string,
     accountNumber:number,

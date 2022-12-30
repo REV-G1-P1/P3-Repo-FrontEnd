@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { loginWithToken } from "../../Redux/Slices/UserSlice";
@@ -19,7 +19,6 @@ const TwoFactorAuth = () => {
 
     const handleLogin = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
         dispatch(loginWithToken(token)).then(()=>{
             
         });
@@ -27,23 +26,21 @@ const TwoFactorAuth = () => {
        // navigate("/home");
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(userState.isLoggedIn)
         if(userState.isAuthenticated)  {navigate("/home")};
     }, [userState.isAuthenticated])
     
-  return (
-    <div className="login">
-        <form name="loginForm" id="auth" onSubmit={handleLogin}>
-            <h1 className="">Verification Token:</h1>
-            <input type="number" id="token" name="token" placeholder="token..." onChange={handleChange} required />
-            <div className='loginFormSubmit'>
-                <button id="login"  className="authentication">Login</button>
-            </div>
+    return (
+        <div className="login">
+            <form name="loginForm" id="auth" onSubmit={handleLogin}>
+                <h1 className="">Verification Token:</h1>
+                <input type="number" id="token" name="token" placeholder="token..." onChange={handleChange} required />
+                <div className='loginFormSubmit'>
+                    <button id="login"  className="authentication">Login</button>
+                </div>
             </form>
-          
         </div>
-  )
+    )
 }
-
-export default TwoFactorAuth
+export default TwoFactorAuth;

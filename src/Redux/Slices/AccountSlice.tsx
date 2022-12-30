@@ -3,13 +3,12 @@ import axios from "axios";
 import { updateBalance } from "../../Types/AccountInformation";
 import { remoteUrl } from "../../Types/URL";
 
-
-export interface AccountState{
+export interface AccountState {
    isUpdated:boolean
 }
 
-const initialState:AccountState =  {
-isUpdated:true
+const initialState:AccountState = {
+    isUpdated:true
 };
 
 export const UpdateRemoteBalance = createAsyncThunk(
@@ -29,20 +28,16 @@ export const accountSlice = createSlice({
     name: "account",
     initialState,
     reducers: {
-      
 
     },
     extraReducers: (builder) => {
         builder.addCase(UpdateRemoteBalance.fulfilled, (state, action) => {
-          
             return state;
         });
       
         builder.addCase(UpdateRemoteBalance.rejected, (state,action) => {
             return state
         });
-     
     }
 });
-
 export default accountSlice.reducer;
