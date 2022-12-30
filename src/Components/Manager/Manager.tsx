@@ -10,16 +10,24 @@ export const ManagerPage:React.FC= ()=>{
   const managertState = useSelector((state:RootState) => state.manager);
     const dispatch:DispatchType= useDispatch();
 
-  useEffect(()=>{
+const handleclick = ()=>{
+  dispatch(getPendingMortgages());
 
+}
+
+  useEffect(()=>{
+console.log('fsdfdsf');
   dispatch(getPendingMortgages());
 
   },[])
+
+  
     return (
 
         <>
        
         <div className="ManagerRootContainer">
+        
         {
          managertState?
          managertState.pendingMortgages?.map((mortage:MortgageApplication) => {
@@ -37,7 +45,10 @@ export const ManagerPage:React.FC= ()=>{
                   status={mortage.status}                    />
                 )
            })
-           :<></>
+           :<>
+         
+           </>
+           
        }
       </div>
         </>
