@@ -27,6 +27,7 @@ const person:User = {
     password: "",
     phoneNumber: 0,
     ssn: 0,
+    userRole:"",
     address: address,
     accountInformation: [],
     mortgageApplication:[],
@@ -61,6 +62,8 @@ export const login = createAsyncThunk(
         }
     }
 );
+
+
 
 export const getUsers = createAsyncThunk(
     'getAllUsers',

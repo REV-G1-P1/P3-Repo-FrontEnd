@@ -5,12 +5,13 @@ import { DispatchType, RootState } from '../../Redux/Store';
 import { MortgageApplication } from '../../Types/Mortgage';
 import { CreateMortgage } from '../../Redux/Slices/MortgageSlice';
 import { getUsers } from '../../Redux/Slices/UserSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const MortgagePage:React.FC = () => {
 
     const userState = useSelector((state:RootState) => state.auth);
     const dispatch:DispatchType = useDispatch();
-
+    let navigate = useNavigate();
     const [getMortgage, setMortgage] = useState<MortgageApplication>({
         applicationId: 0,
         firstName:userState.isLoggedIn? userState.currentUser.firstName:'' ,
@@ -38,7 +39,7 @@ export const MortgagePage:React.FC = () => {
         e.preventDefault();
         console.log(JSON.stringify(getMortgage));
         dispatch(CreateMortgage(getMortgage))
-        .then(() => dispatch(getUsers()));
+        .then(() => dispatch(getUsers()).then(()=>   navigate('/home')));
            // clearAllInputs();
     }
 
@@ -58,7 +59,6 @@ export const MortgagePage:React.FC = () => {
 
                 {userState.registeredError  ? <h1 className="h1Auth"></h1> : <></>}
                 {userState.isRegistered  ? <h1 className="h1Auth"></h1> : <></>}
-
                 <label>First Name</label>
                 <input id= "first_name" 
                     name="firstName" 

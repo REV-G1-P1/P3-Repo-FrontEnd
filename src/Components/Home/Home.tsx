@@ -116,7 +116,28 @@ export const HomePage:React.FC= ()=>{
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
+        <h2 className="MortgageHomeTitle">Mortage Applications</h2>
+        <div className="homeMortgageContainer">
+          
+{
+         userState.currentUser?
+           userState.currentUser.mortgageApplication?.map((mortage:MortgageApplication) => {
+
+                return <MortgageApplicationPage key={mortage.applicationId} 
+                applicationId={mortage.applicationId} firstName={mortage.firstName} 
+                homeValue={mortage.homeValue} income= {mortage.income}
+                lastName = {mortage.lastName}   
+                loanAddress={mortage.loanAddress} loanAmount={mortage.loanAmount} 
+                ssn={mortage.ssn} status= {mortage.status}
+                            />
+                
+            })
+           :<></>
+
+           
+       }
+       </div>
         </>
     )
 }

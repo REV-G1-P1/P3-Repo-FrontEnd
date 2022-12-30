@@ -8,6 +8,10 @@ export const TransactionPage:React.FC<Transactions> = ({
     transactionType, 
     transactionTime
     }) => {
+    
+    function formatMoney(number:number) {
+            return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+          }
 
     return (
         <>
@@ -15,7 +19,7 @@ export const TransactionPage:React.FC<Transactions> = ({
                 <div className="transactionContainer">
                     <p>{accountNumber}</p>
                     <p>{accountType}</p>
-                    <p>{balanceChange}</p>
+                    <p>{formatMoney(balanceChange)}</p>
                     <p>{transactionType}</p>
                     <p>{`${transactionTime[1]}/${transactionTime[2]}/${transactionTime[0]}`}</p>
                 </div>
