@@ -1,44 +1,68 @@
-.TransferRootContainer{
-    height: fit-content;
-    border-radius: 5%;
-    margin-top: 0;
-    padding: 0px 0px 20px;
-    border: solid;
-   
-    justify-content: space-evenly;
-  
-}
-
-.TransferHeader{
-    margin: 0;
-    background-color: beige;
-    padding: 7px 0px;
-   
-}
-select{
-    height: 40px;
-}
-
-.TransferContainer{
-    padding: 0px 50px;
+.TransferRootContainer {
     display: flex;
     flex-direction: column;
-    gap:10px;
-    
+    width: 400px;
+    border-radius: 5%;
+    padding: 7px 20px 10px 20px;
+    border: 2px solid rgb(168, 168, 168);
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
 }
-
-.TransferButtonsContainer{
-
+  
+.TransferHeader {
+    align-self: center;
+    border: solid;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: 1.5em;
+    width: 350px;
+    text-transform: uppercase;
+    background-color: #000000;
+    color: #56d676;
+}
+  
+.TransferContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap:20px;
-
+    flex-direction: column;
+    align-items: center;
 }
-.TransferContainer > *{
-    font-size: larger;
+  
+.TransferContainer select {
+    width: 320px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 20px;
 }
-
-.TransferPriceElement{
-   width: 90px;
+  
+.TransferButtonsContainer {
+    display: flex;
+    align-items: center;
+}
+  
+.TransferPriceElement {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-right: 20px;
+}
+  
+.TransferButtonsContainer button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #409E58;
+    color: #fff;
+    cursor: pointer;
+}
+  
+.TransferButtonsContainer button:hover {
+    background-color: #B9C8BD;
 }

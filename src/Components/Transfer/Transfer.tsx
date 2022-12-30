@@ -100,7 +100,7 @@ export const TransferPage:React.FC= () => {
                         <input className='TransferPriceElement' type='number' value={balance} onChange={handleAmountChange} required></input>
                         <button >Submit</button>
                     </div>
-                    <p>{error?.showError? error.message:''}</p>
+                    {error?.showError ? <p>error.message</p> : ''}
                 </div>
             </form>
         </>

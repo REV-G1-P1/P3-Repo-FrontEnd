@@ -15,7 +15,6 @@ export const AccountPage:React.FC<accountInformation> = ({accountNumber, routing
                 <h3 className='AccountHeader'>Routing Number: {routingNumber} </h3>
                 <h3 className='AccountHeader'>Balance: {formatMoney(balance)} </h3>
             </div>
-            <br/>
         </>
     )
 }
