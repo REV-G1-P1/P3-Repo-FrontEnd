@@ -29,7 +29,13 @@ const TwoFactorAuth = () => {
 
     useEffect(()=>{
         console.log(userState.isLoggedIn)
-        if(userState.isAuthenticated)  {navigate("/home")};
+        if(userState.isAuthenticated)
+        {
+            console.log("user role "+userState.currentUser.userRole);
+        if(userState.currentUser.userRole=== "CUSTOMER")
+        navigate("/home");
+        else navigate("/admin");
+        }
     }, [userState.isAuthenticated])
     
   return (

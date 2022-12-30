@@ -1,17 +1,15 @@
-.AccountRootContainer{
-
+.MortgageApplicationRootContainer{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
     border: solid;
     padding:30px;
-    width: 90%;
-border-radius: 5%;
+    width: 30%;
+    border-radius: 5%;
 
 }
 
-.AccountType{
+.MortgageTitle{
     border:solid;
     border-radius: 10%;
     text-align:center;
@@ -20,7 +18,7 @@ border-radius: 5%;
 }
 
 
-.AccountHeader{
+.MortgageHeader{
     border:solid;
     border-radius: 10%;
     text-align:left;

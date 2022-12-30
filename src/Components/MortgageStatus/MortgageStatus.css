@@ -1,0 +1,15 @@
+.MortgageStatusRoot{
+display: flex;
+flex-direction: column;
+align-items: center;
+border: solid;
+font-size: large;
+padding: 5px;
+}
+
+.MortgageStatusButtons{
+display: flex;
+flex-direction: row;
+gap:5px;
+
+}

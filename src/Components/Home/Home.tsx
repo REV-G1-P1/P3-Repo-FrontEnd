@@ -40,15 +40,14 @@ export const HomePage:React.FC= ()=>{
     
     return (
         <>
-       
-
-        <div className="HomeRootContainer">
         <h1 className="HomePageHeader">Hello {userState.currentUser?
         userState.currentUser.firstName?.charAt(0).toUpperCase() + userState.currentUser.firstName?.slice(1)
       :" "   
     }
      </h1>
-             <div className="HomeAccountContainers">
+        <div className="HomeRootContainer">
+        
+           
             <div className="LeftHomeContainer">
             {
          userState.currentUser?
@@ -65,23 +64,7 @@ export const HomePage:React.FC= ()=>{
            
        }
 
-{
-         userState.currentUser?
-           userState.currentUser.mortgageApplication?.map((mortage:MortgageApplication) => {
 
-                return <MortgageApplicationPage key={mortage.applicationId} 
-                applicationId={mortage.applicationId} firstName={mortage.firstName} 
-                homeValue={mortage.homeValue} income= {mortage.income}
-                lastName = {mortage.lastName}   
-                loanAddress={mortage.loanAddress} loanAmount={mortage.loanAmount} 
-                ssn={mortage.ssn} status= {mortage.status}
-                            />
-                
-            })
-           :<></>
-
-           
-       }
                 </div>
                 <div className="CenterHomeContainer"></div>
                 <div className='MobileAccountButtons'>
@@ -122,7 +105,29 @@ export const HomePage:React.FC= ()=>{
        }
            </div>
             </div>
-        </div>
+       
+
+        <h2 className="MortgageHomeTitle">Mortage Applications</h2>
+        <div className="homeMortgageContainer">
+          
+{
+         userState.currentUser?
+           userState.currentUser.mortgageApplication?.map((mortage:MortgageApplication) => {
+
+                return <MortgageApplicationPage key={mortage.applicationId} 
+                applicationId={mortage.applicationId} firstName={mortage.firstName} 
+                homeValue={mortage.homeValue} income= {mortage.income}
+                lastName = {mortage.lastName}   
+                loanAddress={mortage.loanAddress} loanAmount={mortage.loanAmount} 
+                ssn={mortage.ssn} status= {mortage.status}
+                            />
+                
+            })
+           :<></>
+
+           
+       }
+       </div>
         </>
     )
 }

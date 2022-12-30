@@ -2,6 +2,7 @@ import { AnyAction, combineReducers, configureStore, Reducer } from "@reduxjs/to
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/es/storage";
 import  accountSlice  from "./Slices/AccountSlice";
+import ManagerSlice from "./Slices/ManagerSlice";
 import personSlice  from "./Slices/UserSlice";
 
 const persistConfig = {
@@ -21,7 +22,9 @@ const persistConfig = {
 
   const appReducer = combineReducers({ 
      auth: personSlice,
-        account: accountSlice,
+    account: accountSlice,
+    manager: ManagerSlice,
+
   })
   
   const persistedReducer = persistReducer(persistConfig, rootReducer)

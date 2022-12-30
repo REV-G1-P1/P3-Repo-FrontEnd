@@ -5,6 +5,7 @@ import Footer from './Components/Footer/Footer';
 import { HeaderPage } from './Components/Header/Header';
 import { HomePage } from './Components/Home/Home';
 import { LoginPage } from './Components/Login/Login';
+import { ManagerPage } from './Components/Manager/Manager';
 import { ModalPage } from './Components/Modal/Modal';
 import { MortgagePage } from './Components/Mortgage/Mortgage';
 import { RegisterPage } from './Components/Register/Register';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />}/>
         <Route path="/address" element={<AddressPage />}/>
         <Route path="/home" element={<HomePage />}/>
+        <Route path="/admin" element={<ManagerPage />}/>
         <Route path="/mortgage" element={<MortgagePage />}/>
         <Route path="/modal" element={<ModalPage />}/>
     </Routes>
