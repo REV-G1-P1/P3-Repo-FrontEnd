@@ -1,4 +1,5 @@
-export const remoteUrl:string ='http://209.76.174.133:8084';
+export const remoteUrl:string = 'http://54.83.172.168:8090' //'http://localhost:8090'
 
-//'http://54.83.172.168:8090'//
-// 'http://44.202.123.217:8090/banking-application-backend-0.0.1-SNAPSHOT''http://54.83.172.168:8090'//'http://209.76.174.133:8084';75298537
+//http://54.83.172.168:8090/  docker-backend
+//http://p3-project-bucket.s3-website-us-east-1.amazonaws.com/  s3-frontend
+

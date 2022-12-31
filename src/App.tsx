@@ -23,6 +23,7 @@ function App() {
                     <Route path="/register" element={<RegisterPage />}/>
                     <Route path="/address" element={<AddressPage />}/>
                     <Route path="/home" element={<HomePage />}/>
+                    <Route path="/admin" element={<ManagerPage />}/>
                     <Route path="/mortgage" element={<MortgagePage />}/>
                     <Route path="/modal" element={<ModalPage />}/>
                 </Routes>
