@@ -38,6 +38,10 @@
    
   }
 
+.logo {
+    opacity: 90%;
+}
+
   
   @media (max-width: 600px) {
     .HeaderMorgageLink{

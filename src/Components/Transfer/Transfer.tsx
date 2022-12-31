@@ -88,19 +88,19 @@ export const TransferPage:React.FC= () => {
                 <div className='TransferContainer'>
                     <select id="fromAccount" onChange={handleAccountChangeFrom}>
                         <option>Account Selection From</option>
-                        <option value="0">{accounts[0]?.accountNumber}</option>
-                        <option value="1">{accounts[1]?.accountNumber}</option>
+                        <option value="0">{accounts[0]?.accountType} #{accounts[0]?.accountNumber}</option>
+                        <option value="1">{accounts[1]?.accountType} #{accounts[1]?.accountNumber}</option>
                     </select>
                     <select id="fromAccount" onChange={handleAccountChangeTo}>
                         <option>Action Selection to</option>
-                        <option value="0">{accounts[0]?.accountNumber}</option>
-                        <option value="1">{accounts[1]?.accountNumber}</option>
+                        <option value="0">{accounts[0]?.accountType} #{accounts[0]?.accountNumber}</option>
+                        <option value="1">{accounts[1]?.accountType} #{accounts[1]?.accountNumber}</option>
                     </select>
                     <div className='TransferButtonsContainer'>
                         <input className='TransferPriceElement' type='number' value={balance} onChange={handleAmountChange} required></input>
                         <button >Submit</button>
                     </div>
-                    {error?.showError ? <p>error.message</p> : ''}
+                    {error?.showError ? <p>{error.message}</p> : ''}
                 </div>
             </form>
         </>

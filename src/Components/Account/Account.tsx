@@ -11,9 +11,11 @@ export const AccountPage:React.FC<accountInformation> = ({accountNumber, routing
         <>
             <div className="AccountRootContainer">
                 <h3 className=' AccountType'>{accountType === "CHECKING" ? 'Checking' : 'Saving'} Account </h3>
-                <h3 className='AccountHeader'>Account Number: {accountNumber} </h3>
-                <h3 className='AccountHeader'>Routing Number: {routingNumber} </h3>
-                <h3 className='AccountHeader'>Balance: {formatMoney(balance)} </h3>
+                <div className="accountInformation">
+                    <h3 className='AccountHeader'>Account Number: {accountNumber} </h3>
+                    <h3 className='AccountHeader'>Routing Number: {routingNumber} </h3>
+                    <h3 className='AccountHeader'>Balance: {formatMoney(balance)} </h3>
+                </div>
             </div>
         </>
     )
