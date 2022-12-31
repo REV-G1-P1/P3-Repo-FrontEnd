@@ -24,14 +24,16 @@ export const HeaderPage:React.FC = () => {
         <header id="header" className="header">
             <div className="nav">
                 <Link to="/home"><img className='logo' width="170" height="100" src={logo}/></Link>
+                <div className="headerContainer">
                 {userState.currentUser?.userRole==="CUSTOMER"
-                  ? <Link className="HeaderMorgageLink" to="/mortgage"><button>Apply to Mortgage</button></Link>
+                  ? <Link className="headerMorgageLink" to="/mortgage">Mortgage Application</Link>
                   : <></>  
                 }   
                 { userState.isAuthenticated 
                   ? <CgLogOut size={50} name="logout" className='logoutBtn' onClick={handleLogout}/>
                   : <></>
                 }
+                </div>
             </div>
         </header>
     )

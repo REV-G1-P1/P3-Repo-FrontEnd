@@ -17,11 +17,11 @@ export const TransactionPage:React.FC<Transactions> = ({
         <>
             <div className="transactionRoot">
                 <div className="transactionContainer">
-                    <p>{accountNumber}</p>
-                    <p>{accountType}</p>
-                    <p>{formatMoney(balanceChange)}</p>
-                    <p>{transactionType}</p>
-                    <p>{`${transactionTime[1]}/${transactionTime[2]}/${transactionTime[0]}`}</p>
+                    <p id="transactionAccountNumber">ACCT# {accountNumber}</p>
+                    <p id="transactionAccountType">{accountType}</p>
+                    <p id="transactionAccountChange">{formatMoney(balanceChange)}</p>
+                    <p id="transactionTransactionType">{transactionType}</p>
+                    <p id="transactionTransactionDate">{`${transactionTime[1]}/${transactionTime[2]}/${transactionTime[0]}`}</p>
                 </div>
             </div>
         </>

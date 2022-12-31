@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { getPendingMortgages } from "../../Redux/Slices/ManagerSlice";
 import { loginWithToken } from "../../Redux/Slices/UserSlice";
 import { DispatchType, RootState } from "../../Redux/Store";
 
 const TwoFactorAuth = () => {
 
     const dispatch:DispatchType = useDispatch();
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const userState = useSelector((state:RootState) => state.auth);
     const [token, setToken] = useState<number>(0);
 
@@ -30,10 +31,13 @@ const TwoFactorAuth = () => {
         console.log(userState.isLoggedIn)
         if(userState.isAuthenticated)
         {
-            console.log("user role "+userState.currentUser.userRole);
-        if(userState.currentUser.userRole=== "CUSTOMER")
-        navigate("/home");
-        else navigate("/admin");
+            console.log("user role " + userState.currentUser.userRole);
+        if(userState.currentUser.userRole === "CUSTOMER")
+            navigate("/home");
+        else {
+            dispatch(getPendingMortgages());
+            navigate("/manager");
+        }
         }
     }, [userState.isAuthenticated])
     

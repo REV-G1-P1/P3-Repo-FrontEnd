@@ -19,3 +19,23 @@
     font-size: 16px;
     margin: 0;
 }
+
+#transactionAccountNumber {
+    width: 25%;
+}
+
+#transactionAccountType {
+    width: 20%;
+}
+
+#transactionAccountChange {
+    width: 20%;
+}
+
+#transactionTransactionType {
+    width: 15%;
+}
+
+#transactionTransactionDate {
+    width: 14%;
+}

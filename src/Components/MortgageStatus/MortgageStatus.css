@@ -1,15 +1,32 @@
-.MortgageStatusRoot{
-display: flex;
-flex-direction: column;
-align-items: center;
-border: solid;
-font-size: large;
-padding: 5px;
+.MortgageStatusRoot {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 0px 20px 10px 20px;
+    box-shadow: 0 0 10px #000000, 0 0 15px #c1c2c1, 0 0 20px #919191, 0 0 25px #b6b6b6;
+    background-color: #f5f5f5af;
+    margin: 20px 10px;
 }
 
-.MortgageStatusButtons{
-display: flex;
-flex-direction: row;
-gap:5px;
+#applicationId {
+    text-align:center;
+    letter-spacing: 0.2em;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
 
+.MortgageStatusRoot p {
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    text-align:center;
+    letter-spacing: 0.2em;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.MortgageStatusRoot span {
+    text-align: left;
+    letter-spacing: 0.1em;
+    font-size: 18px;
+    transform: translateY(15px);
 }
