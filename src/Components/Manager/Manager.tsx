@@ -21,7 +21,7 @@ export const ManagerPage:React.FC= ()=>{
         dispatch(getPendingMortgages());
         setTimeout(() => {
             setShowMap(true);
-          }, 2000);
+          }, 5000);
     },[])
 
     return (
