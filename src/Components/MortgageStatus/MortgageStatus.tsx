@@ -23,37 +23,32 @@ export const MortgageStatus:React.FC<MortgageApplication>= ({
         return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
       }
 
-    const handleApprove=(e: { preventDefault: () => void; }) => {
+      const handleApprove=(e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        setMortageState({applicationId:applicationId, status:"APPROVED"});
-        dispatch(approveDenyMortgage(mortgageState!))
-            .then(()=> dispatch(getPendingMortgages()));
+        dispatch(approveDenyMortgage({applicationId:applicationId, status:"APPROVED"}))
+          .then(()=> {
+            setMortageState({applicationId:applicationId, status:"APPROVED"});
+            dispatch(getPendingMortgages());
+          });
     }
-
-      const handleDeny=(e: { preventDefault: () => void; })=>{
+    
+    const handleDeny=(e: { preventDefault: () => void; })=>{
         e.preventDefault();
-        setMortageState({
-            applicationId:applicationId,
-            status:"DENIED"
-                  })
-                  console.log("mortgageState "+JSON.stringify(mortgageState))
-            dispatch(approveDenyMortgage(mortgageState!)).then(
-                ()=> dispatch(getPendingMortgages())
-            )
-            
-                  }
+        dispatch(approveDenyMortgage({applicationId:applicationId, status:"DENIED"}))
+          .then(()=> {
+            setMortageState({applicationId:applicationId, status:"DENIED"});
+            dispatch(getPendingMortgages());
+          });
+    }
 
     return (
         <>
             <div className="MortgageStatusRoot">
-                { status==="PENDING" ?
-                    <div className="MortgageStatusButtons">
-                        <button onClick={handleApprove}>Approve</button>
-                        <button onClick={handleDeny}>Deny</button>
-                    </div>
-                : <></>
-                }
-                <p id="applicationId">#{applicationId}</p>
+                <div className="MortgageStatusButtons">
+                    <h3 id="applicationId">#{applicationId}</h3>
+                    <button onClick={handleApprove}>Approve</button>
+                    <button onClick={handleDeny}>Deny</button>
+                </div>
                 <span>Name</span>
                 <p>{firstName} {lastName}</p>
                 <span>Income</span>

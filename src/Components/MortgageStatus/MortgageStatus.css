@@ -30,3 +30,26 @@
     font-size: 18px;
     transform: translateY(15px);
 }
+
+.MortgageStatusButtons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.MortgageStatusButtons :nth-child(2) {
+    border-radius: 50%;
+    background-color: #409E58;
+}
+
+.MortgageStatusButtons :nth-child(2):hover {
+    background-color: #01b130;
+}
+
+.MortgageStatusButtons :nth-child(3) {
+    border-radius: 50%;
+    background-color: #af0000;
+}
+
+.MortgageStatusButtons :nth-child(3):hover {
+    background-color: #e20101;
+}
