@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getPendingMortgages } from "../../Redux/Slices/ManagerSlice";
 import { loginWithToken } from "../../Redux/Slices/UserSlice";
 import { DispatchType, RootState } from "../../Redux/Store";
+import "./TwoFactorAuth.css";
 
 const TwoFactorAuth = () => {
 
@@ -42,12 +43,13 @@ const TwoFactorAuth = () => {
     }, [userState.isAuthenticated])
     
     return (
-        <div className="login">
-            <form name="loginForm" id="auth" onSubmit={handleLogin}>
+        <div className="tokenPageContainer">
+            <form className="tokenForm" name="tokenForm" id="auth" onSubmit={handleLogin}>
                 <h1 className="">Verification Token:</h1>
+                <p>Please check your phone for the token.</p>
                 <input type="number" id="token" name="token" placeholder="token..." onChange={handleChange} required />
                 <div className='loginFormSubmit'>
-                    <button id="login"  className="authentication">Login</button>
+                    <button id="login" className="authentication">Login</button>
                 </div>
             </form>
         </div>

@@ -40,6 +40,7 @@ export const MortgagePage:React.FC = () => {
 
     useEffect(()=>{
         if(!userState.isLoggedIn) navigate('/login')
+        if(userState.currentUser.userRole !== "CUSTOMER")navigate("/home");
     }, [])
 
     const handleCreateMortgage = (e: { preventDefault: () => void; }) => {
@@ -60,7 +61,7 @@ export const MortgagePage:React.FC = () => {
     }
 
     return (
-        <div className="login">
+        <div>
             <form id="mortgageApplicationForm" onSubmit={handleCreateMortgage}>
                 <h1>Mortgage Application</h1>
                 <div className="applicationContainer">
@@ -112,8 +113,8 @@ export const MortgagePage:React.FC = () => {
                 <label>Loan Address</label>
                 <textarea rows={3} name="loanAddress" placeholder="Loan Address..." onChange={handleTextAreaChange} required/>
 
-                <div className='loginFormSubmit'>
-                    <button id="login" className="authentication" >Submit</button>
+                <div className='mortgageApplicationSubmit'>
+                    <button id="mortgageApplicationSubmit">Submit</button>
                 </div>
             </form>
         </div>

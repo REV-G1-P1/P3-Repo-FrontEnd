@@ -51,8 +51,8 @@ export const LoginPage:React.FC= () => {
 
     return (
         <div className="login">
-            <form name="loginForm" id="auth" onSubmit={handleLogin}>
-                <h1 className="h1Auth">Login</h1>
+            <form className="credentialsForm" name="loginForm" id="auth" onSubmit={handleLogin}>
+                <h1>Login</h1>
 
                 {userState.loginError ? <h3>Username or password incorrect</h3> : <></>}
 
@@ -66,8 +66,7 @@ export const LoginPage:React.FC= () => {
                     onChange = {handleChange} 
                     required
                 />
-                <span className='dangerSpan'>{valError}</span>
-
+                
                 <label>Password</label>
                 <input type="password" 
                     id="password" 
@@ -80,11 +79,10 @@ export const LoginPage:React.FC= () => {
                     onChange={handleChange} 
                     required 
                 />
-                <span className='dangerSpan'>{valError}</span>
 
-                <div className='loginFormSubmit'>
-                    <button id="login"  className="authentication" >Login</button>
-                    <Link to="/register" className="registerLinkFromLogin">register</Link>
+                <div className='credentialsFormSubmit'>
+                    <button id="credentialsBtn">Login</button>
+                    <Link to="/register" className="registerLinkFromLogin">Register</Link>
                 </div>
             </form>
         </div>
