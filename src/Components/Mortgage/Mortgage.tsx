@@ -31,6 +31,13 @@ export const MortgagePage:React.FC = () => {
         });
     }
 
+    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMortgage({
+            ...getMortgage,
+            [event.target.name]:event.target.value
+        });
+      }
+
     useEffect(()=>{
       
     }, [])
@@ -54,50 +61,56 @@ export const MortgagePage:React.FC = () => {
 
     return (
         <div className="login">
-            <form id="auth" onSubmit={handleCreateMortgage}>
+            <form id="mortgageApplicationForm" onSubmit={handleCreateMortgage}>
                 <h1 className="h1Auth">Create Mortgage Application</h1>
+                <div className="applicationContainer">
+                    {userState.registeredError  ? <h1 className="h1Auth"></h1> : <></>}
+                    {userState.isRegistered  ? <h1 className="h1Auth"></h1> : <></>}
+                    <div className="leftApplication">
+                        <label>First Name</label>
+                        <input id= "first_name" 
+                            name="firstName" 
+                            placeholder="first name" 
+                            value={userState.isLoggedIn ? userState.currentUser.firstName : ""}
+                            onChange={handleChange} 
+                            required
+                        />
 
-                {userState.registeredError  ? <h1 className="h1Auth"></h1> : <></>}
-                {userState.isRegistered  ? <h1 className="h1Auth"></h1> : <></>}
-                <label>First Name</label>
-                <input id= "first_name" 
-                    name="firstName" 
-                    placeholder="first name" 
-                    value={userState.isLoggedIn ? userState.currentUser.firstName : ""}
-                    onChange={handleChange} 
-                    required
-                />
+                        <label>Income</label>
+                        <input type="number" id="password"  name="income" placeholder="income" onChange={handleChange} required/>
 
-                <label>Last Name</label>
-                <input id= "lastName" 
-                    name="lastName" 
-                    placeholder="last name" 
-                    value={userState.isLoggedIn ? userState.currentUser.lastName:''}
-                    onChange={handleChange} 
-                    required
-                />
-                <label>Income</label>
-                <input type="number" id="password"  name="income" placeholder="income" onChange={handleChange} required/>
+                        <label>Home Value</label>
+                        <input type="number" id="password"  name="homeValue" placeholder="home value" onChange={handleChange} required/>
+                    </div>
 
-                <label>Home Value</label>
-                <input type="number" id="password"  name="homeValue" placeholder="home value" onChange={handleChange} required/>
+                    <div className="rightApplication">
+                        <label>Last Name</label>
+                        <input id= "lastName" 
+                            name="lastName" 
+                            placeholder="last name" 
+                            value={userState.isLoggedIn ? userState.currentUser.lastName:''}
+                            onChange={handleChange} 
+                            required
+                        />
 
+                        <label>SSN</label>
+                        <input type="number" 
+                            id="password"  
+                            maxLength={9}  
+                            name="ssn" 
+                            placeholder="ssn" 
+                            value={userState.isLoggedIn? userState.currentUser.ssn:''}
+                            onChange={handleChange} 
+                            required
+                        />
+
+                        <label>Loan Amount</label>
+                        <input type="number" id="password" name="loanAmount" placeholder="loan amount" onChange={handleChange} required/>
+                    </div>
+
+                </div>
                 <label>Loan Address</label>
-                <input  type ="text" id= "email" name="loanAddress" placeholder="loan address" onChange={handleChange} required/>
-
-                <label>Loan Amount</label>
-                <input type="number" id="password" name="loanAmount" placeholder="loan amount" onChange={handleChange} required/>
-
-                <label>SSN</label>
-                <input type="number" 
-                    id="password"  
-                    maxLength={9}  
-                    name="ssn" 
-                    placeholder="ssn" 
-                    value={userState.isLoggedIn? userState.currentUser.ssn:''}
-                    onChange={handleChange} 
-                    required
-                />
+                <textarea rows={3} id="email" name="loanAddress" placeholder="loan address..." onChange={handleTextAreaChange} required/>
 
                 <div className='loginFormSubmit'>
                     <button id="login" className="authentication" >Submit</button>

@@ -2,7 +2,11 @@ html, body {
     width:100%;
     height: 100%;
     overflow-x: hidden;
-
+    background-image: url("./Assets/KBOABackground1920x1080.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family:'Times New Roman', Times, serif
 }
 
 button{

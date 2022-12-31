@@ -89,8 +89,8 @@ export const ReceiveSendPage:React.FC= () => {
                 <div className='TransferContainer'>
                     <select id="fromAccount" onChange={handleAccountChange}>
                         <option value="default">Account Selection</option>
-                        <option value="0">{accounts[0]?.accountNumber}</option>
-                        <option value="1">{accounts[1]?.accountNumber}</option>
+                        <option value="0">{accounts[0]?.accountType} #{accounts[0]?.accountNumber}</option>
+                        <option value="1">{accounts[1]?.accountType} #{accounts[1]?.accountNumber}</option>
                     </select>
                     <select id="withAction" onChange={handleActionChange}>
                         <option>Requested Action</option>

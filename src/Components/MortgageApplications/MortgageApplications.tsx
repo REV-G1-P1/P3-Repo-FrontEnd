@@ -19,7 +19,7 @@ export const MortgageApplicationPage:React.FC<MortgageApplication>= ({
     return (
         <>
             <div className="MortgageApplicationRootContainer">
-                <h3 className=' MortgageTitle'>{applicationId} ApplicationId </h3>
+                <h3 className=' MortgageTitle'>Application #{applicationId}</h3>
                 <h3 className='MortgageHeader'>First Name:   {firstName} </h3>
                 <h3 className='MortgageHeader'>Last Name: {lastName} </h3>
                 <h3 className='MortgageHeader'>Income: {formatMoney(income)} </h3>

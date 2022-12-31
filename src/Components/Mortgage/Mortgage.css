@@ -1,35 +1,44 @@
 
-label, input , button{
-    font-size:2em;
-    }
-    
-    html, body{
-        height:100%;
-    }
-    
-    .login{
-    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        flex-direction: column;
-        
-       
-    }
-    
-    #auth{
-        display: flex;
-        flex-direction: column;
-        align-content: space-between;
-        align-items: flex-start;
-        border:none;
-        gap: 30px;
-        padding: 50px;
-        
-    }
-    
+#mortgageApplicationForm {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    box-shadow: 0 0 10px #000000, 0 0 15px #c1c2c1, 0 0 20px #919191, 0 0 25px #b6b6b6;
+    background-color: #f5f5f5af;
+    margin-bottom: 10px;
+    gap: 10px;
+    padding: 50px;
+}
   
-    
-    
-       
+#mortgageApplicationForm input {
+    width: 90%;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+  
+.loginFormSubmit {
+    display: flex;
+    align-items: center;
+}
+
+.applicationContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftApplication {
+    width: 50%;
+}
+
+.rightApplication {
+    width: 50%;
+}
+
+#mortgageApplicationForm textarea {
+    width: 95%;
+    font-size: 18px;
+}
