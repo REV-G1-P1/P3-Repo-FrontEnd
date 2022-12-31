@@ -1,52 +1,59 @@
 
-   img{
-      
-      object-fit: cover;
-      align-self: flex-start;
-  
-  }
-  
-  .logoutBtn{
+img {
+    object-fit: cover;
+    align-self: flex-start;
+}
+
+.logoutBtn {
     border-style: none;
-    
     cursor: pointer;
-  }
+}
 
-  .nav {
-      display: flex;
-      overflow: hidden;
-      flex-direction: row;
-      justify-content:  space-between;
-      align-items: center;
-      margin: 0px 5px;
-     
-    }
+.nav {
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 5px;
+}
     
 
-  .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
+}
   
   
-  .header{
-
+.header{
     box-shadow: 0 4px 8px 0 rgba(255, 254, 254, 0.8);
     border-bottom: 1px solid #a5a5a5;
-   
-  }
+}
 
 .logo {
     opacity: 90%;
 }
 
-  
-  @media (max-width: 600px) {
-    .HeaderMorgageLink{
-      display: none;
-    }
-  
-  }
-  
+.headerContainer {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerMorgageLink {
+    width: 105px;
+    padding: 10px;
+    font-size: 16px;
+    color: black;
+    background-color: #b3b3b3;
+    border-radius: 5px;
+    border: 2px solid rgb(136, 136, 136);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.headerMorgageLink:hover {
+    background-color: #838383;
+}

@@ -26,6 +26,7 @@ function App() {
                     <Route path="/admin" element={<ManagerPage />}/>
                     <Route path="/mortgage" element={<MortgagePage />}/>
                     <Route path="/modal" element={<ModalPage />}/>
+                    <Route path="/manager" element={<ManagerPage />}/>
                 </Routes>
                 <Footer />
             </BrowserRouter>

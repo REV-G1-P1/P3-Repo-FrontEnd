@@ -1,34 +1,76 @@
+#registerForm {
+    display: flex;
+    margin: auto;
+    margin-top: 2%;
+    flex-direction: column;
+    width: 25%;
+    box-shadow: 0 0 10px #000000, 0 0 15px #c1c2c1, 0 0 20px #919191, 0 0 25px #b6b6b6;
+    background-color: #f5f5f5af;
+    margin-bottom: 10px;
+    gap: 10px;
+    padding: 15px;
+}
 
-label, input , button{
-    font-size:2em;
-    }
-    
-    html, body{
-        height:100%;
-    }
-    
-    .login{
-    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        flex-direction: column;
-        
-       
-    }
-    
-    #auth{
-        display: flex;
-        flex-direction: column;
-        align-content: space-between;
-        align-items: flex-start;
-        border:none;
-        gap: 30px;
-        padding: 50px;
-        
-    }
+#registerFormContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
-    
-    
-       
+#registerForm h1 {
+    text-align: center;
+}
+  
+#registerForm input {
+    width: 90%;
+    height: 40px;
+    font-size: 18px;
+    margin-left: 5%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 25px;
+}
+
+#registerForm label {
+    margin-left: 5%;
+    font-size: 19px;
+}
+
+.registerFormSubmit {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.linkButtonToLogin {
+    text-align: center;
+    width: 45%;
+    padding: 7px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #006699;
+    border-radius: 4px;
+    border: 2px solid rgb(136, 136, 136);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.linkButtonToLogin:hover {
+    background-color: #0987c7;
+}
+
+.registerNextButton {
+    width: 45%;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #409E58;
+    border-radius: 4px;
+    border: 2px solid rgb(136, 136, 136);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.registerNextButton:hover {
+    background-color: #01b130;
+}

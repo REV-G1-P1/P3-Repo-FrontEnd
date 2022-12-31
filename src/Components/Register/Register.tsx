@@ -43,7 +43,7 @@ export const RegisterPage:React.FC = () => {
     }
 
     useEffect(() => {
-      
+        if(userState.isLoggedIn) navigate('/home')
     }, [userState.isLoggedIn])
 
     const handleRegisterUser = (e: { preventDefault: () => void; }) => {
@@ -62,34 +62,32 @@ export const RegisterPage:React.FC = () => {
         }
     }
 
-    return(
-        <div className="login">
-            <form id="auth" onSubmit={handleRegisterUser}>
-                <h1 className="h1Auth">Register</h1>
-
+    return (
+        <form id="registerForm" onSubmit={handleRegisterUser}>
+            <h1>Registration</h1>
+            <div id="registerFormContainer">
                 <label>First Name</label>
-                <input id= "first_name" name="firstName" placeholder="first name" onChange={handleChange} required/>
+                <input name="firstName" placeholder="First Name" onChange={handleChange} required/>
 
                 <label>Last Name</label>
-                <input id= "lastName" name="lastName" placeholder="last name" onChange={handleChange} required/>
+                <input name="lastName" placeholder="Last Name" onChange={handleChange} required/>
 
                 <label>Email</label>
-                <input  type ="email" id= "email" name="email" placeholder="Your email" onChange={handleChange} required/>
+                <input type ="email" name="email" placeholder="Email" onChange={handleChange} required/>
 
                 <label>Password</label>
-                <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} required/>
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} required/>
 
                 <label>Phone Number</label>
-                <input type="number" id="phoneNumber"  maxLength={9}  name="phoneNumber" placeholder="phoneNumber" onChange={handleChange} required/>
+                <input type="number" maxLength={9} name="phoneNumber" placeholder="Phone Number" onChange={handleChange} required/>
 
-                <label>SSN</label>
-                <input type="number" id="password"  maxLength={9}  name="ssn" placeholder="ssn" onChange={handleChange} required/>
-
-                <div className='loginFormSubmit'>
-                    <button id="login" className="authentication" >Next</button>
-                    <Link to="/login" className="registerLinkFromLogin">Login</Link>
-                </div>
-            </form>
-        </div>
+                <label>Social Security #</label>
+                <input type="number" maxLength={9} name="ssn" placeholder="Social Security #" onChange={handleChange} required/>
+            </div>
+            <div className='registerFormSubmit'>
+                <button className="registerNextButton">Next</button>
+                <Link className="linkButtonToLogin" to="/login">Login</Link>
+            </div>
+        </form>
     )
 }

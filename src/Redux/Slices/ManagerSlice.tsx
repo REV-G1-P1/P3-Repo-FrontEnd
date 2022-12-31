@@ -5,8 +5,8 @@ import { remoteUrl } from "../../Types/URL";
 
 
 export interface ManagerState{
-pendingMortgages:MortgageApplication,
-isUpdated:boolean
+    pendingMortgages:MortgageApplication,
+    isUpdated:boolean
 }
 
 const mortage:MortgageApplication={
@@ -31,8 +31,8 @@ export const getPendingMortgages = createAsyncThunk(
     async(thunkAPI) => {
         try{    
             const res = await axios.get(`${remoteUrl}/mortgages/get/all`, {withCredentials:true});
-           return res.data;
-         
+            return res.data;
+
         } catch(e) {
            // return thunkAPI.rejectWithValue('Incorrect username or password');
         }
@@ -40,8 +40,8 @@ export const getPendingMortgages = createAsyncThunk(
 );
 
 export  interface ApproveDenyState{
-applicationId: number,
-status:string
+    applicationId: number,
+    status:string
 }
 
 export const approveDenyMortgage = createAsyncThunk(
@@ -63,12 +63,11 @@ export const managerSlice = createSlice({
     initialState,
     reducers: {
       
-
     },
     extraReducers: (builder) => {
         builder.addCase(getPendingMortgages.fulfilled, (state, action) => {
-            console.log("getMortgagePending "+JSON.stringify(action.payload))
-          state.pendingMortgages= action.payload;
+            console.log("getMortgagePending " + JSON.stringify(action.payload))
+            state.pendingMortgages= action.payload;
             return state;
         });
       
@@ -76,7 +75,6 @@ export const managerSlice = createSlice({
             state.isUpdated=true;
             return state
         });
-     
     }
 });
 

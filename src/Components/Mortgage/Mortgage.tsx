@@ -39,7 +39,7 @@ export const MortgagePage:React.FC = () => {
       }
 
     useEffect(()=>{
-      
+        if(!userState.isLoggedIn) navigate('/login')
     }, [])
 
     const handleCreateMortgage = (e: { preventDefault: () => void; }) => {
@@ -62,7 +62,7 @@ export const MortgagePage:React.FC = () => {
     return (
         <div className="login">
             <form id="mortgageApplicationForm" onSubmit={handleCreateMortgage}>
-                <h1 className="h1Auth">Create Mortgage Application</h1>
+                <h1>Mortgage Application</h1>
                 <div className="applicationContainer">
                     {userState.registeredError  ? <h1 className="h1Auth"></h1> : <></>}
                     {userState.isRegistered  ? <h1 className="h1Auth"></h1> : <></>}
@@ -70,47 +70,47 @@ export const MortgagePage:React.FC = () => {
                         <label>First Name</label>
                         <input id= "first_name" 
                             name="firstName" 
-                            placeholder="first name" 
+                            placeholder="First Name" 
                             value={userState.isLoggedIn ? userState.currentUser.firstName : ""}
                             onChange={handleChange} 
                             required
                         />
 
                         <label>Income</label>
-                        <input type="number" id="password"  name="income" placeholder="income" onChange={handleChange} required/>
+                        <input type="number" id="password"  name="income" placeholder="Income" onChange={handleChange} required/>
 
                         <label>Home Value</label>
-                        <input type="number" id="password"  name="homeValue" placeholder="home value" onChange={handleChange} required/>
+                        <input type="number" id="password"  name="homeValue" placeholder="Home Value" onChange={handleChange} required/>
                     </div>
 
                     <div className="rightApplication">
                         <label>Last Name</label>
                         <input id= "lastName" 
                             name="lastName" 
-                            placeholder="last name" 
+                            placeholder="Last Name" 
                             value={userState.isLoggedIn ? userState.currentUser.lastName:''}
                             onChange={handleChange} 
                             required
                         />
 
-                        <label>SSN</label>
+                        <label>Social Security Number</label>
                         <input type="number" 
                             id="password"  
                             maxLength={9}  
                             name="ssn" 
-                            placeholder="ssn" 
+                            placeholder="Social Security Number" 
                             value={userState.isLoggedIn? userState.currentUser.ssn:''}
                             onChange={handleChange} 
                             required
                         />
 
                         <label>Loan Amount</label>
-                        <input type="number" id="password" name="loanAmount" placeholder="loan amount" onChange={handleChange} required/>
+                        <input type="number" id="password" name="loanAmount" placeholder="Loan Amount" onChange={handleChange} required/>
                     </div>
 
                 </div>
                 <label>Loan Address</label>
-                <textarea rows={3} id="email" name="loanAddress" placeholder="loan address..." onChange={handleTextAreaChange} required/>
+                <textarea rows={3} name="loanAddress" placeholder="Loan Address..." onChange={handleTextAreaChange} required/>
 
                 <div className='loginFormSubmit'>
                     <button id="login" className="authentication" >Submit</button>

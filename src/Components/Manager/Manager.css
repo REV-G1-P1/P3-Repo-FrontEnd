@@ -1,6 +1,6 @@
 .ManagerRootContainer{
     display: flex;
-    flex-direction: row;
-    gap:10px;
-    margin: 2%;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
 }

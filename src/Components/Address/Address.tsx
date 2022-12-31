@@ -49,7 +49,7 @@ export const AddressPage:React.FC = () => {
 
 
     useEffect(()=>{
-        
+        if(userState.isLoggedIn) navigate('/home')
     }, [userState.currentUser])
 
     const handleRegisterAddress = (e: { preventDefault: () => void; }) => {

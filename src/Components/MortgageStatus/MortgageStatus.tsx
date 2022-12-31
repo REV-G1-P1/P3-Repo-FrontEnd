@@ -23,18 +23,12 @@ export const MortgageStatus:React.FC<MortgageApplication>= ({
         return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
       }
 
-      const handleApprove=(e: { preventDefault: () => void; })=>{
-e.preventDefault();
-setMortageState({
-applicationId:applicationId,
-status:"APPROVED"
-      })
-      console.log("mortgageState "+JSON.stringify(mortgageState))
-dispatch(approveDenyMortgage(mortgageState!)).then(
-    ()=> dispatch(getPendingMortgages())
-)
-
-      }
+    const handleApprove=(e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        setMortageState({applicationId:applicationId, status:"APPROVED"});
+        dispatch(approveDenyMortgage(mortgageState!))
+            .then(()=> dispatch(getPendingMortgages()));
+    }
 
       const handleDeny=(e: { preventDefault: () => void; })=>{
         e.preventDefault();
@@ -50,28 +44,27 @@ dispatch(approveDenyMortgage(mortgageState!)).then(
                   }
 
     return (
-
         <>
-        <div className="MortgageStatusRoot">
-        <p className=' '>ApplicationId: {applicationId}  </p>
-        <p className=''>First Name:   {firstName} </p>
-        <p className=''>Last Name: {lastName} </p>
-        <p className=''>Income: {formatMoney(income)} </p>
-        <p className=''>Loan Amount: {formatMoney(loanAmount)} </p>
-        <p className=''>Home Value: {formatMoney(homeValue)} </p>
-        <p className=''>Loan Address: {loanAddress} </p>
-        <p className=''>Status: {status} </p>
-        {status==="PENDING"?
-            <div className="MortgageStatusButtons">
-            <button onClick={handleApprove}>Approve</button>
-            <button onClick={handleDeny}>Deny</button>
-        </div>
-        :<></>
-}
-      
-
-        </div>
-        <br/>
+            <div className="MortgageStatusRoot">
+                { status==="PENDING" ?
+                    <div className="MortgageStatusButtons">
+                        <button onClick={handleApprove}>Approve</button>
+                        <button onClick={handleDeny}>Deny</button>
+                    </div>
+                : <></>
+                }
+                <p id="applicationId">#{applicationId}</p>
+                <span>Name</span>
+                <p>{firstName} {lastName}</p>
+                <span>Income</span>
+                <p>{formatMoney(income)}</p>
+                <span>Loan Amount</span>
+                <p>{formatMoney(loanAmount)}</p>
+                <span>Home Value</span>
+                <p>{formatMoney(homeValue)}</p>
+                <span>Loan Address</span>
+                <p>{loanAddress}</p>
+            </div>
         </>
     )
 }

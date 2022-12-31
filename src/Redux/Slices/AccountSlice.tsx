@@ -23,7 +23,6 @@ export const UpdateRemoteBalance = createAsyncThunk(
     }
 );
 
-
 export const accountSlice = createSlice({
     name: "account",
     initialState,
