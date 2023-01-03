@@ -41,6 +41,14 @@ export const RegisterPage:React.FC = () => {
             [e.target.name]:e.target.value
         });
     }
+    
+      const handleConfirmPassword= (e:React.ChangeEvent<HTMLInputElement>) =>{
+       if( user.password !== e.target.value){
+        e.currentTarget.setCustomValidity("Passwords Don't Match"); 
+    }   else {
+        e.currentTarget.setCustomValidity('');
+      }
+}
 
     useEffect(() => {
         if(userState.isLoggedIn) navigate('/home')
@@ -77,6 +85,9 @@ export const RegisterPage:React.FC = () => {
 
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password" onChange={handleChange} required/>
+                
+                <label>Confirm Password</label>
+                <input type="password" name="confirm password" placeholder="Confirm Password" onChange={handleConfirmPassword} required/>
 
                 <label>Phone Number</label>
                 <input type="number" maxLength={9} name="phoneNumber" placeholder="Phone Number" onChange={handleChange} required/>
