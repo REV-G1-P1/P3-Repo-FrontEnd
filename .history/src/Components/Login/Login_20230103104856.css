@@ -25,9 +25,10 @@
     margin-bottom: 50px;
 }
 
-.credentialsForm h3 {
+.credentialsForm h1 {
     text-align: center;
-    color: red;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
 }
   
 .credentialsForm label {

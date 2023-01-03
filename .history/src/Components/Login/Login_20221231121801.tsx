@@ -70,6 +70,8 @@ export const LoginPage:React.FC= () => {
                 <label>Password</label>
                 <input type="password" 
                     id="password" 
+                    maxLength={12} 
+                    minLength={5}
                     onInvalid={() => {setValError("Please enter a strong password")}}
                     onInput={() => {setValError('')}}
                     name="password" 
