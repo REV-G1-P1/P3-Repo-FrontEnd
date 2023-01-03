@@ -36,7 +36,8 @@ export const HomePage:React.FC= ()=>{
     }
 
     useEffect(() => {
-        if(!userState.isLoggedIn) navigate('/login')
+        if(!userState.isLoggedIn) navigate('/login');
+        if(userState.currentUser.userRole === "MANAGER")navigate("/manager");
     },[]);
     
     return (
