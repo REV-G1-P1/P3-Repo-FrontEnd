@@ -14,6 +14,7 @@ export const LoginPage:React.FC= () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [valError, setValError] = useState<string>("");
+    const [incorrectUserPass, setIncorrectUserPass] = useState<boolean>(false);
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === "email") {
@@ -21,6 +22,7 @@ export const LoginPage:React.FC= () => {
         } else {
             setPassword(e.target.value);
         }
+        setIncorrectUserPass(false);
     }
 
     useEffect(() => {
@@ -35,6 +37,7 @@ export const LoginPage:React.FC= () => {
            password: password
         }
         dispatch(login(user)).then(() => {
+            setIncorrectUserPass(userState.loginError);
             clearAllInputs();
         });
        // navigate("/home");
@@ -54,7 +57,7 @@ export const LoginPage:React.FC= () => {
             <form className="credentialsForm" name="loginForm" id="auth" onSubmit={handleLogin}>
                 <h1>Login</h1>
 
-                {userState.loginError ? <h3>Username or password incorrect</h3> : <></>}
+                {incorrectUserPass ? <h3>Username or password incorrect</h3> : <></>}
 
                 <label>Email</label>
                 <input type="email" 
