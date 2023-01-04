@@ -35,7 +35,7 @@ const person:User = {
 }
 
 const initialState:AuthState =  {
-    isLoggedIn: false, registeredError: false, loginError: false, currentUser: person,
+    isLoggedIn: false, registeredError: false, loginError: true, currentUser: person,
     isRegistered: false,
     isAuthenticated: false
 };
