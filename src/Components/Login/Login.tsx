@@ -37,9 +37,9 @@ export const LoginPage:React.FC= () => {
            password: password
         }
         dispatch(login(user)).then(() => {
-            setIncorrectUserPass(userState.loginError);
             clearAllInputs();
         });
+        setIncorrectUserPass(userState.loginError);
        // navigate("/home");
     };
     
